@@ -2,15 +2,15 @@
     <div>
         Stock Search
     </div>
-    <ul ngbNav class="nav-pills" orientation="horizontal">
+    <ul ngbNav>
         <li ngbNavItem>
-          <a ngbNavLink>Search</a>
+          <a ngbNavLink (click)="tabChange('SEARCH')">Search</a>
         </li>
         <li ngbNavItem>
-          <a ngbNavLink>Watchlist</a>
+          <a ngbNavLink (click)="tabChange('WATCHLIST')">Watchlist</a>
         </li>
         <li ngbNavItem>
-            <a ngbNavLink>Portfolio</a>
+            <a ngbNavLink (click)="tabChange('PORTFOLIO')">Portfolio</a>
         </li>
     </ul>
 </nav>

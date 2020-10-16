@@ -1,6 +1,23 @@
-<app-nav-bar> </app-nav-bar>
+<app-nav-bar
+    (tabClicked)="changeTab($event)"
+    >
 
-<app-search> </app-search>
+</app-nav-bar>
+
+<div *ngIf='shown === "SEARCH"'>
+    <app-search (searchClicked)='changeTab($event)'></app-search>
+</div>
+
+<div *ngIf='shown === "DETAILS"'>
+    <p> Details view </p>
+</div>
+
+<div *ngIf="shown === 'WATCHLIST'">
+<p> watchlist component</p>
+</div>
+<div *ngIf="shown === 'PORTFOLIO'">
+<p> portfolio component</p>
+</div>
 
 <app-footer> </app-footer>
 

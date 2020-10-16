@@ -1,0 +1,12 @@
+div {
+    /* center page */
+}
+
+form {
+    border-color: blueviolet;
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 6px;
+    margin: 0px;
+    padding: 0px;
+}

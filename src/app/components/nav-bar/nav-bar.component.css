@@ -1,3 +1,10 @@
 nav {
     background-color: blueviolet;
+    color: white;
+}
+
+li {
+    border-radius: 13px;
+    background-color: black;
+    margin: 5px;
 }

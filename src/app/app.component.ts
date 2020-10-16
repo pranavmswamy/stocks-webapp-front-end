@@ -7,4 +7,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'stocks-website';
+  shown = "SEARCH"
+
+  changeTab(tabValue): void {
+    this.shown = tabValue
+  }
+
 }
