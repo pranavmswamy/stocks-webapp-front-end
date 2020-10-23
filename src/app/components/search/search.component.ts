@@ -22,8 +22,9 @@ export class SearchComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onSearchClick(newView: string): void {
-    this.searchClicked.emit(newView);
+  onSearchClick(ticker: string): void {
+    // go to details route with ticker as param.
+    this.searchClicked.emit(ticker);
   }
 
   onTyped(text) {
