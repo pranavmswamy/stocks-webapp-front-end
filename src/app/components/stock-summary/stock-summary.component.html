@@ -1,0 +1,30 @@
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <div class="row">
+                <div class="col">
+                    High Price: {{ this.latestPrice.high }} <br>
+                    Low Price: {{ this.latestPrice.low }} <br>
+                    Open Price: {{ this.latestPrice.open }} <br>
+                    Prev. Close: {{ this.latestPrice.prevClose }} <br>
+                    Volume: {{ this.latestPrice.volume }} <br>
+                </div>
+                <div class="col" *ngIf="this.latestPrice.mid != null">
+                    Mid Price: {{ this.latestPrice.mid }} <br>
+                    Ask Price: {{ this.latestPrice.askPrice }} <br>
+                    Ask Size: {{ this.latestPrice.askSize }} <br>
+                    Bid Price: {{ this.latestPrice.bidPrice }} <br>
+                    Bid Size: {{ this.latestPrice.bidSize }}
+                </div>
+            </div>
+            <div class="row">
+                <h3> Company's Description </h3> <br> <br>
+                <p> Start Date: {{ this.companyDescription.startDate }} </p>
+                <p> {{ this.companyDescription.description }} </p>
+            </div>
+        </div>
+        <div class="col">
+            Chart Data
+        </div>
+    </div>  
+</div>

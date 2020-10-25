@@ -7,7 +7,7 @@ import { NewsElement } from '../models/newselement';
 })
 export class NewsapiService {
 
-  news = [];
+  //news = [];
   NEWS_API_KEY = "4968ea67234848f890c5464257055d85";
   constructor(
     private http: HttpClient

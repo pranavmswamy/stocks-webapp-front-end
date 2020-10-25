@@ -12,6 +12,7 @@ import { TiingoService } from '../../services/tiingo.service'
 export class SearchComponent implements OnInit {
   faSearch = faSearch;
   @Output() searchClicked = new EventEmitter()
+  @Output() goToDetailsEvent = new EventEmitter()
   searchForm = new FormControl()
   autoCompleteOptions = []
 
@@ -22,10 +23,15 @@ export class SearchComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  goToDetailsView(details: String): void {
+    this.goToDetailsEvent.emit(details)
+  }
+
   onSearchClick(ticker: string): void {
     // go to details route with ticker as param.
     this.searchClicked.emit(ticker);
   }
+
 
   onTyped(text) {
     console.log(text)
@@ -38,7 +44,4 @@ export class SearchComponent implements OnInit {
       this.autoCompleteOptions = [];
     } 
   }
-
-  
-
 }

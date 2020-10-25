@@ -1,0 +1,32 @@
+<div class="container">
+    <div class="row"  *ngFor="let newsItem of this.news">
+        <div class="col-6">
+          <div class="card bg-light mb-3">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-3">
+                        <img src={{newsItem[0].urlToImage}}>
+                    </div>
+                    <div class="col-9">
+                        <p> {{ newsItem[0].title }} </p>
+                    </div>
+                </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="card bg-light mb-3">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-3">
+                        <img src={{newsItem[1].urlToImage}}>
+                    </div>
+                    <div class="col-9">
+                        <p> {{ newsItem[1].title }} </p>
+                    </div>
+                </div>
+            </div>
+          </div>
+        </div>
+    </div>    
+</div>

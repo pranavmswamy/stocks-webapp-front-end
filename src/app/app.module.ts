@@ -10,8 +10,12 @@ import { FooterComponent } from './components/footer/footer.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { MatAutocompleteModule } from '@angular/material/autocomplete'
+import { MatTabsModule } from '@angular/material/tabs'
 import { HttpClientModule } from '@angular/common/http';
-import { DetailsComponent } from './components/details/details.component'
+import { DetailsComponent } from './components/details/details.component';
+import { StockSummaryComponent } from './components/stock-summary/stock-summary.component';
+import { StockNewsComponent } from './components/stock-news/stock-news.component';
+import { StockChartsComponent } from './components/stock-charts/stock-charts.component'
 
 @NgModule({
   declarations: [
@@ -19,7 +23,10 @@ import { DetailsComponent } from './components/details/details.component'
     SearchComponent,
     NavBarComponent,
     FooterComponent,
-    DetailsComponent
+    DetailsComponent,
+    StockSummaryComponent,
+    StockNewsComponent,
+    StockChartsComponent
   ],
   imports: [
     BrowserModule,
@@ -28,7 +35,8 @@ import { DetailsComponent } from './components/details/details.component'
     FontAwesomeModule,
     BrowserAnimationsModule,
     MatAutocompleteModule,
-    HttpClientModule
+    HttpClientModule,
+    MatTabsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

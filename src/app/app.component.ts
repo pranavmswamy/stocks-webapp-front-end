@@ -8,9 +8,14 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'stocks-website';
   shown = "SEARCH"
+  ticker: String;
 
-  changeTab(tabValue): void {
+  changeTab(tabValue, ticker?): void {
+    this.ticker = ticker
     this.shown = tabValue
+    console.log('In app-component-', tabValue, ticker)
   }
+
+
 
 }

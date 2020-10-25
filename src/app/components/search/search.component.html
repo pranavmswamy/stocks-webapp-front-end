@@ -7,13 +7,14 @@
             #searchField
             [matAutocomplete]="auto"
             (keyup)="onTyped(searchField.value)" />
-        <button class="btn" (click)="onSearchClick('DETAILS')"> 
+        <button class="btn" (click)="goToDetailsView('DETAILS')"
+                            (click)="onSearchClick(searchField.value)"> 
             <fa-icon [icon]="faSearch"> </fa-icon> 
         </button>
     </form>
 
     <mat-autocomplete #auto="matAutocomplete">
-        <mat-option *ngFor="let option of autoCompleteOptions" [value]="option">
+        <mat-option *ngFor="let option of autoCompleteOptions" [value]="option.ticker">
           <span style="font-weight: bold;"> {{ option.ticker }} </span> | {{ option.name }}
         </mat-option>
     </mat-autocomplete>

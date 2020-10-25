@@ -5,18 +5,19 @@
 </app-nav-bar>
 
 <div *ngIf='shown === "SEARCH"'>
-    <app-search (searchClicked)='changeTab($event)'></app-search>
+    <app-search (searchClicked)='changeTab("DETAILS", $event)'> </app-search>
 </div>
 
 <div *ngIf='shown === "DETAILS"'>
-    <app-details> </app-details>
+    <app-details [ticker]='ticker'> </app-details>
 </div>
 
 <div *ngIf="shown === 'WATCHLIST'">
-<p> watchlist component</p>
+    <p> watchlist component</p>
 </div>
+
 <div *ngIf="shown === 'PORTFOLIO'">
-<p> portfolio component</p>
+    <p> portfolio component</p>
 </div>
 
 <app-footer> </app-footer>
