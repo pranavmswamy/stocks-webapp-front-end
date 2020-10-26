@@ -34,7 +34,6 @@ export class SearchComponent implements OnInit {
 
 
   onTyped(text) {
-    console.log(text)
     if(text != "") {
       this.tiingo.getAutoCompleteOptions(text).subscribe(data => {
         this.autoCompleteOptions = data;

@@ -1,0 +1,10 @@
+<div class="row">
+    <div class="col">
+        <span> {{this.companyDescription.ticker }} </span> <br>
+        <span> {{ this.companyDescription.name }} </span>
+    </div>
+    <div class="col">
+        <span> {{ this.latestPrice.last }} </span> <br>
+        <span> {{ this.getPriceChange() }} ( {{ this.getPriceChangePercent() }}% )</span> <br>
+    </div>
+</div>

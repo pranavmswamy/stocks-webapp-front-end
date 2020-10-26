@@ -1,0 +1,55 @@
+<div>
+
+    <script>window.twttr = (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0],
+          t = window.twttr || {};
+        if (d.getElementById(id)) return t;
+        js = d.createElement(s);
+        js.id = id;
+        js.src = "https://platform.twitter.com/widgets.js";
+        fjs.parentNode.insertBefore(js, fjs);
+      
+        t._e = [];
+        t.ready = function(f) {
+          t._e.push(f);
+        };
+      
+        return t;
+      }(document, "script", "twitter-wjs"));</script>
+    
+    <div class="card bg-light mb-3" (click)="openNewsModal(newsModal)">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-3">
+                    <img src={{this.newsElement.urlToImage}}>
+                </div>
+                <div class="col-9">
+                    <p> {{ this.newsElement.title }} </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <ng-template #newsModal let-modal>
+        
+        <div class="modal-header">
+          <h4 class="modal-title" id="modal-basic-title">{{ this.newsElement.source.name }}</h4>
+          <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <h5> {{ this.getFormattedDate(this.newsElement.publishedAt) }} </h5>
+        </div>
+
+        <div class="modal-body">
+            <h6> {{ this.newsElement.title }}</h6>
+            <p> {{ this.newsElement.description }} </p>
+            <p> For more details, click <a href={{this.newsElement.url}}> here. </a></p>
+        </div>
+
+        <div class="card">
+            <p> Share </p>
+            <a class="twitter-share-button" href="https://twitter.com/intent/tweet">Tweet</a>
+        </div>
+
+    </ng-template>
+</div>

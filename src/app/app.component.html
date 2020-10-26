@@ -1,8 +1,4 @@
-<app-nav-bar
-    (tabClicked)="changeTab($event)"
-    >
-
-</app-nav-bar>
+<app-nav-bar (tabClicked)="changeTab($event)"> </app-nav-bar>
 
 <div *ngIf='shown === "SEARCH"'>
     <app-search (searchClicked)='changeTab("DETAILS", $event)'> </app-search>
@@ -13,7 +9,7 @@
 </div>
 
 <div *ngIf="shown === 'WATCHLIST'">
-    <p> watchlist component</p>
+    <app-watchlist [ticker]='ticker'> </app-watchlist>
 </div>
 
 <div *ngIf="shown === 'PORTFOLIO'">

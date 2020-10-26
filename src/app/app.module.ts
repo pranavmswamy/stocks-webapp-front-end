@@ -15,7 +15,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { DetailsComponent } from './components/details/details.component';
 import { StockSummaryComponent } from './components/stock-summary/stock-summary.component';
 import { StockNewsComponent } from './components/stock-news/stock-news.component';
-import { StockChartsComponent } from './components/stock-charts/stock-charts.component'
+import { StockChartsComponent } from './components/stock-charts/stock-charts.component';
+import { StockNewsElementComponent } from './components/stock-news-element/stock-news-element.component';
+import { WatchlistComponent } from './components/watchlist/watchlist.component';
+import { FavoriteStockComponent } from './components/favorite-stock/favorite-stock.component';
+import { PortfolioComponent } from './components/portfolio/portfolio.component'
 
 @NgModule({
   declarations: [
@@ -26,7 +30,11 @@ import { StockChartsComponent } from './components/stock-charts/stock-charts.com
     DetailsComponent,
     StockSummaryComponent,
     StockNewsComponent,
-    StockChartsComponent
+    StockChartsComponent,
+    StockNewsElementComponent,
+    WatchlistComponent,
+    FavoriteStockComponent,
+    PortfolioComponent
   ],
   imports: [
     BrowserModule,

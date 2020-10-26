@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row">
         <div class="col">
-            <div class="row">
+            <div class="row" *ngIf="this.latestPrice != undefined">
                 <div class="col">
                     High Price: {{ this.latestPrice.high }} <br>
                     Low Price: {{ this.latestPrice.low }} <br>
@@ -17,7 +17,7 @@
                     Bid Size: {{ this.latestPrice.bidSize }}
                 </div>
             </div>
-            <div class="row">
+            <div class="row" *ngIf="this.companyDescription != undefined">
                 <h3> Company's Description </h3> <br> <br>
                 <p> Start Date: {{ this.companyDescription.startDate }} </p>
                 <p> {{ this.companyDescription.description }} </p>

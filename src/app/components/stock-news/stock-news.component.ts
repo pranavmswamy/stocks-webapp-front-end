@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Input } from '@angular/core'
 import { NewsapiService } from '../../services/newsapi.service'
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap'
+
 @Component({
   selector: 'app-stock-news',
   templateUrl: './stock-news.component.html',
@@ -10,7 +12,8 @@ export class StockNewsComponent implements OnInit {
   @Input() ticker;
   news;
   constructor(
-    private newsapi: NewsapiService
+    private newsapi: NewsapiService,
+    private newsModal: NgbModal
   ) { }
 
   ngOnInit(): void {
