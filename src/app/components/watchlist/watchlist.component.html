@@ -1,6 +1,6 @@
 <div class="container">
     <h1> My Watchlist</h1>
-    <div class="row" *ngFor="let favorite of favoriteStocks">
+    <div class="row card" *ngFor="let favorite of favoriteStocks">
         <app-favorite-stock [ticker]='favorite'> </app-favorite-stock>
     </div>
 </div>

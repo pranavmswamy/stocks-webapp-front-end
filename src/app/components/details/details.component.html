@@ -20,7 +20,9 @@
                     
                     <span> {{ this.companyDescription.name }} </span> <br>
                     <span> {{ this.companyDescription.exchangeCode }} </span> <br>
-                    <button (click)="openBuyModal(buyModal)"> Buy </button>
+                    <app-buy-modal 
+                        [companyDescription]='this.companyDescription'
+                        [latestPrice]='this.latestPrice'> </app-buy-modal>
                 </div>
             </div>
             <div class="col move-right">
@@ -49,57 +51,6 @@
                 </mat-tab>
             </mat-tab-group>
         </div>
-    
-        <ng-template #buyModal let-modal>
-            <div class="modal-header">
-              <h4 class="modal-title" id="modal-basic-title">{{ this.companyDescription.ticker }}</h4>
-              <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col-3">
-                        Current Price:
-                    </div>
-                    <div class="col-9">
-                        {{ this.latestPrice.last }}
-                    </div>
-                </div>
-    
-                <div class="row">
-                    <div class="col-3">
-                        Quantity:
-                    </div>
-                    <div class="col-9">
-                        <form>
-                            <div class="form-group">
-                            <div class="input-group">
-                                <input type="number" id="quantity" class="form-control" placeholder="0" name="qty" #qty (input)="calcTotalAndEnableBuy(qty.value)">
-                            </div>
-                            </div>
-                        </form>  
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <div class="row">
-                    <div class="col-10">
-                        <div *ngIf="this.numberOfSharesModalValue != '' ">
-                            Total: {{ numberOfSharesModalValue*this.latestPrice.last }}
-                        </div>
-                    </div>
-                    <div class="col-2">
-                        <div *ngIf="this.numberOfSharesModalValue == '' ">
-                            <button type="button" class="btn btn-success" (click)="modal.close('Save click')" disabled>Buy</button>
-                        </div>
-                        <div *ngIf="this.numberOfSharesModalValue != '' ">
-                            <button type="button" class="btn btn-success" (click)="modal.close('Save click')">Buy</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </ng-template>
 </div>
 
 

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {WatchlistService} from '../../services/watchlist.service'
 
 
@@ -8,7 +8,6 @@ import {WatchlistService} from '../../services/watchlist.service'
   styleUrls: ['./watchlist.component.css']
 })
 export class WatchlistComponent implements OnInit {
-  @Input() ticker;
   favoriteStocks;
   
 

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PortfolioService } from 'src/app/services/portfolio.service';
 
 @Component({
   selector: 'app-portfolio',
@@ -6,10 +7,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./portfolio.component.css']
 })
 export class PortfolioComponent implements OnInit {
-
-  constructor() { }
+  myStocks;
+  constructor(
+    private portfolio: PortfolioService
+  ) { }
 
   ngOnInit(): void {
+    this.myStocks = Object.keys(this.portfolio.getPortfolio())
   }
 
 }

@@ -19,7 +19,10 @@ import { StockChartsComponent } from './components/stock-charts/stock-charts.com
 import { StockNewsElementComponent } from './components/stock-news-element/stock-news-element.component';
 import { WatchlistComponent } from './components/watchlist/watchlist.component';
 import { FavoriteStockComponent } from './components/favorite-stock/favorite-stock.component';
-import { PortfolioComponent } from './components/portfolio/portfolio.component'
+import { PortfolioComponent } from './components/portfolio/portfolio.component';
+import { BuyModalComponent } from './components/buy-modal/buy-modal.component';
+import { MyStockComponent } from './components/my-stock/my-stock.component';
+import { SellModalComponent } from './components/sell-modal/sell-modal.component'
 
 @NgModule({
   declarations: [
@@ -34,7 +37,10 @@ import { PortfolioComponent } from './components/portfolio/portfolio.component'
     StockNewsElementComponent,
     WatchlistComponent,
     FavoriteStockComponent,
-    PortfolioComponent
+    PortfolioComponent,
+    BuyModalComponent,
+    MyStockComponent,
+    SellModalComponent
   ],
   imports: [
     BrowserModule,

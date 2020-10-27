@@ -1,0 +1,52 @@
+<ng-template #sellModal let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">{{ this.ticker.toUpperCase() }}</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-3">
+                Current Price:
+            </div>
+            <div class="col-9">
+                {{ this.latestPrice.last }}
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-3">
+                Quantity:
+            </div>
+            <div class="col-9">
+                <form>
+                    <div class="form-group">
+                    <div class="input-group">
+                        <input type="number" id="quantity" class="form-control" placeholder="0" name="qty" #qty (input)="calcTotalAndEnableSell(qty.value)">
+                    </div>
+                    </div>
+                </form>  
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <div class="row">
+            <div class="col-10">
+                <div *ngIf="this.numberOfSharesModalValue != 0 && this.numberOfSharesModalValue <= this.qtyLimit">
+                    Total: {{ numberOfSharesModalValue*this.latestPrice.last }}
+                </div>
+            </div>
+            <div class="col-2">
+                <div *ngIf="this.numberOfSharesModalValue == 0 || this.numberOfSharesModalValue > this.qtyLimit">
+                    <button type="button" class="btn btn-success" (click)="sell(qty.value)" disabled>Sell</button>
+                </div>
+                <div *ngIf="this.numberOfSharesModalValue != 0 && this.numberOfSharesModalValue <= this.qtyLimit">
+                    <button type="button" class="btn btn-success" (click)="sell(qty.value)">Sell</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-template>
+
+<button class="btn btn-danger" (click)='this.openSellModal(sellModal)'> Sell </button>

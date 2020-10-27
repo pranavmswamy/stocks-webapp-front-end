@@ -1,1 +1,6 @@
-<p>portfolio works!</p>
+<div class="container">
+    <h1> My Portfolio </h1>
+    <div class="row" *ngFor="let myStock of myStocks">
+        <app-my-stock [ticker]='myStock'> </app-my-stock>
+    </div>
+</div>

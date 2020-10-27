@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { NewsapiService } from '../../services/newsapi.service'
 import { TiingoService } from '../../services/tiingo.service'
 import { Input } from '@angular/core'
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap'
 import { WatchlistService } from '../../services/watchlist.service'
 
 @Component({
@@ -20,13 +19,10 @@ export class DetailsComponent implements OnInit {
   latestPrice;
 
   favorite = false;
-  
-  numberOfSharesModalValue = '';
 
   constructor(
     private newsapi : NewsapiService,
     private tiingo: TiingoService,
-    private buyModal: NgbModal,
     private watchlist: WatchlistService
   ) { }
 
@@ -64,15 +60,6 @@ export class DetailsComponent implements OnInit {
     return currentTime.toISOString().substring(0,10) + " " + currentTime.toISOString().substring(11,19);
   }
 
-  openBuyModal(content) {
-    this.buyModal.open(content);
-  }
-
-  calcTotalAndEnableBuy(value) {
-    this.numberOfSharesModalValue = value;
-    console.log(value)
-  }
-
   getPriceChange() {
     return (this.latestPrice.last - this.latestPrice.prevClose).toFixed(2);
   }
@@ -90,35 +77,5 @@ export class DetailsComponent implements OnInit {
     else {
       this.watchlist.removeFromWatchList(this.ticker);
     }
-
-    /*if(this.favorite == true) {
-
-      let watchlist = localStorage.getItem('watchlist')
-      if(watchlist != undefined) {
-        let watchlistObj = JSON.parse(watchlist)
-        console.log("Before adding-", watchlistObj);
-        watchlistObj.push(this.ticker);
-        localStorage.setItem("watchlist", JSON.stringify(watchlistObj));
-        console.log("Setting-", watchlistObj)
-      }
-      else {
-        localStorage.setItem("watchlist", JSON.stringify([this.ticker]));
-      }
-    }
-    else {
-      let watchlist = localStorage.getItem('watchlist')
-      if(watchlist != undefined) {
-        let watchlistObj = JSON.parse(watchlist);
-        console.log("Before removing-", watchlistObj);
-        for(let i = 0; i < watchlistObj.length; i++) { 
-          if( watchlistObj[i] == this.ticker) { 
-            watchlistObj.splice(i, 1);
-            break; 
-          }
-        }
-        console.log("After removing-", watchlistObj);
-        localStorage.setItem("watchlist", JSON.stringify(watchlistObj));
-      }
-    }*/
   }
 }
