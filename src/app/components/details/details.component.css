@@ -1,3 +1,13 @@
 .move-right {
     text-align: right;
 } 
+
+#green {
+    color: green;
+    background-color: greenyellow;
+}
+
+#red {
+    color: red;
+    background-color: red;
+}

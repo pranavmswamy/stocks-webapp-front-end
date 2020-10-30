@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { NewsapiService } from '../../services/newsapi.service'
 import { TiingoService } from '../../services/tiingo.service'
 import { Input } from '@angular/core'
 import { WatchlistService } from '../../services/watchlist.service'
+import { Subject } from 'rxjs'
+import { debounceTime } from 'rxjs/operators'
+import { interval } from 'rxjs'
+import { ActivatedRoute } from '@angular/router'
 
 @Component({
   selector: 'app-details',
@@ -14,36 +17,49 @@ export class DetailsComponent implements OnInit {
   @Input() ticker;
   companyDescription;
   news;
-  dailyChartData;
-  historicalData;
   latestPrice;
+  currentTime;
 
+  private _success = new Subject<string>();
+  private _addedW = new Subject<string>();
+  private _removedW = new Subject<string>();
   favorite = false;
+  boughtStockSuccess = "";
+  addedToWatchlist = "";
+  removedFromWatchlist = "";
 
   constructor(
-    private newsapi : NewsapiService,
     private tiingo: TiingoService,
-    private watchlist: WatchlistService
+    private watchlist: WatchlistService,
+    private route: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
+
+    this.route.paramMap.subscribe(params => {
+      this.ticker = params.get('ticker');
+    })
+
     if(this.ticker != "") {
       // call getCompanyDescription from tiingo service
       this.tiingo.getCompanyDescription(this.ticker).subscribe(data => {
         this.companyDescription = data;
       })
 
-      // call daily chart data from tiingo 
-      this.tiingo.getDailyChartData(this.ticker).subscribe(data => {
-        this.dailyChartData = data;
-      })
-
-      this.tiingo.getHistoricalData(this.ticker).subscribe(data => {
-        this.historicalData = data;
-      })
-
+      // call first time
       this.tiingo.getLatestPrice(this.ticker).subscribe(data => {
         this.latestPrice = data;
+        console.log(this.latestPrice.last)
+      })
+
+      // call every 30s
+      interval(0.5*60*1000).subscribe(() => {
+        this.tiingo.getLatestPrice(this.ticker).subscribe(data => {
+          this.latestPrice = data;
+          console.log(this.latestPrice.last)
+        })
+        this.currentTime = this.getCurrentTimestamp();
+        console.log("Called every 30s")
       })
 
       if(this.ticker.toLowerCase() in this.watchlist.getWatchList()) {
@@ -52,7 +68,40 @@ export class DetailsComponent implements OnInit {
       else {
         this.favorite = false;
       }
+
+      this.currentTime = this.getCurrentTimestamp();
+      
+      this._success.subscribe(message => this.boughtStockSuccess = message);
+      this._success.pipe(
+        debounceTime(5000)
+      ).subscribe(() => this.boughtStockSuccess = '');
+
+      this._addedW.subscribe(message => this.addedToWatchlist = message);
+      this._addedW.pipe(
+        debounceTime(5000)
+      ).subscribe(() => this.addedToWatchlist = '');
+
+      this._removedW.subscribe(message => this.removedFromWatchlist = message);
+      this._removedW.pipe(
+        debounceTime(5000)
+      ).subscribe(() => this.removedFromWatchlist = '');
+
+
+
     }
+  }
+
+  changeSuccessMessage() {
+    this._success.next(`${this.ticker.toUpperCase()} stocks bought successfully`);
+  }
+
+  changeAddedToWatchList() {
+    this._addedW.next(`${this.ticker.toUpperCase()} added to watchlist.`)
+
+  }
+
+  changeRemovedFromWatchList() {
+    this._removedW.next(`${this.ticker.toUpperCase()} removed from watchlist.`)
   }
 
   getCurrentTimestamp(): string {

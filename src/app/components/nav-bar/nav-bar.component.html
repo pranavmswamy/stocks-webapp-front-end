@@ -4,13 +4,13 @@
     </div>
     <ul ngbNav>
         <li ngbNavItem>
-          <a ngbNavLink (click)="tabChange('SEARCH')">Search</a>
+          <a ngbNavLink routerLink="/">Search</a>
         </li>
         <li ngbNavItem>
-          <a ngbNavLink (click)="tabChange('WATCHLIST')">Watchlist</a>
+          <a ngbNavLink routerLink="/watchlist" >Watchlist</a>
         </li>
         <li ngbNavItem>
-            <a ngbNavLink (click)="tabChange('PORTFOLIO')">Portfolio</a>
+            <a ngbNavLink routerLink="/portfolio">Portfolio</a>
         </li>
     </ul>
 </nav>

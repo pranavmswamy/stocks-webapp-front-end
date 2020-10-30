@@ -23,6 +23,17 @@ import { PortfolioComponent } from './components/portfolio/portfolio.component';
 import { BuyModalComponent } from './components/buy-modal/buy-modal.component';
 import { MyStockComponent } from './components/my-stock/my-stock.component';
 import { SellModalComponent } from './components/sell-modal/sell-modal.component'
+import {HighchartsChartModule } from 'highcharts-angular'
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {Routes, RouterModule } from '@angular/router'
+ 
+
+const routes: Routes = [
+{ path: '', component: SearchComponent},
+{ path: 'watchlist', component: WatchlistComponent},
+{ path: 'portfolio', component: PortfolioComponent},
+{ path: 'details/:ticker', component: DetailsComponent}
+]
 
 @NgModule({
   declarations: [
@@ -50,8 +61,12 @@ import { SellModalComponent } from './components/sell-modal/sell-modal.component
     BrowserAnimationsModule,
     MatAutocompleteModule,
     HttpClientModule,
-    MatTabsModule
+    MatTabsModule,
+    HighchartsChartModule,
+    MatProgressSpinnerModule,
+    RouterModule.forRoot(routes)
   ],
+  exports: [RouterModule],
   providers: [],
   bootstrap: [AppComponent]
 })

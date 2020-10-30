@@ -1,4 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { interval } from 'rxjs';
 import {TiingoService} from '../../services/tiingo.service'
 
 @Component({
@@ -11,6 +12,7 @@ export class FavoriteStockComponent implements OnInit {
   @Input() ticker;
   companyDescription;
   latestPrice;
+  @Output() finishedLoading = new EventEmitter();
 
   constructor(
     private tiingo: TiingoService
@@ -22,12 +24,25 @@ export class FavoriteStockComponent implements OnInit {
       // call latest price
       this.tiingo.getLatestPrice(this.ticker).subscribe(data => {
         this.latestPrice = data;
+        
+        // call companyDesc; calling it nested to pass finishedLoading event emitter
+        this.tiingo.getCompanyDescription(this.ticker).subscribe(data => {
+          this.companyDescription = data;
+
+          this.finishedLoading.emit()
+
+        })
+      
+      })
+
+      // call every 30s
+      interval(0.5*60*1000).subscribe(() => {
+        this.tiingo.getLatestPrice(this.ticker).subscribe(data => {
+          this.latestPrice = data;
+          console.log("Updating price for", this.ticker, this.latestPrice.last)
+        })
       })
       
-      // call companyDesc
-      this.tiingo.getCompanyDescription(this.ticker).subscribe(data => {
-        this.companyDescription = data;
-      })
     }
 
   }

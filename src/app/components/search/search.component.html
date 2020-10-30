@@ -1,4 +1,4 @@
-<div>
+<div class="container">
     <h1> STOCK SEARCH </h1>
 
     <form>
@@ -6,17 +6,24 @@
             matInput
             #searchField
             [matAutocomplete]="auto"
-            (keyup)="onTyped(searchField.value)" />
+            (input)="onTyped(searchField.value)"
+            (keyup)='checkIfEmpty(searchField.value)' />
         <button class="btn" (click)="goToDetailsView('DETAILS')"
-                            (click)="onSearchClick(searchField.value)"> 
+                            (click)="onSearchClick(searchField.value)"
+                            [routerLink]="['/details', searchField.value]"> 
             <fa-icon [icon]="faSearch"> </fa-icon> 
         </button>
     </form>
 
     <mat-autocomplete #auto="matAutocomplete">
-        <mat-option *ngFor="let option of autoCompleteOptions" [value]="option.ticker">
-          <span style="font-weight: bold;"> {{ option.ticker }} </span> | {{ option.name }}
-        </mat-option>
+        <div *ngIf='this.autoCompleteOptions.length == 0'>
+            <mat-spinner> </mat-spinner>
+        </div>
+        <div *ngIf='this.autoCompleteOptions.length > 0'>
+            <mat-option *ngFor="let option of autoCompleteOptions" [value]="option.ticker">
+                <span style="font-weight: bold;"> {{ option.ticker }} </span> | {{ option.name }}
+            </mat-option>
+        </div>
     </mat-autocomplete>
 
 </div>

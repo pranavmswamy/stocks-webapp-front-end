@@ -1,9 +1,7 @@
 <div class="card">
-    <div class="card-header">
-        <a href="">
-            <h4 class="card-title"> {{ this.companyDescription.ticker }} </h4>
-            {{ this.companyDescription.name }}
-        </a>
+    <div class="card-header" [routerLink]="['../details', this.companyDescription.ticker]">
+        <h4 class="card-title"> {{ this.companyDescription.ticker }} </h4>
+        {{ this.companyDescription.name }}
     </div>
     <div class="card-body">
         <div class="row">
@@ -28,8 +26,18 @@
                         Current Price: <br>
                         Market Value: <br>
                     </div>
-                    <div class="col">
-                        {{ getAvgCost() - this.latestPrice.last }} <br>
+                    <div class="col" *ngIf='this.latestPrice.last - this.latestPrice.prevClose == 0'>
+                        {{ this.latestPrice.last - getAvgCost() }} <br>
+                        {{ this.latestPrice.last }} <br>
+                        {{ this.latestPrice.last*getQuantity() }} <br>
+                    </div>
+                    <div id="green" class="col" *ngIf='this.latestPrice.last - getAvgCost() > 0'>
+                        {{ this.latestPrice.last - getAvgCost() }} <br>
+                        {{ this.latestPrice.last }} <br>
+                        {{ this.latestPrice.last*getQuantity() }} <br>
+                    </div>
+                    <div id="red" class="col" *ngIf='this.latestPrice.last - getAvgCost() < 0'>
+                        {{ this.latestPrice.last - getAvgCost() }} <br>
                         {{ this.latestPrice.last }} <br>
                         {{ this.latestPrice.last*getQuantity() }} <br>
                     </div>

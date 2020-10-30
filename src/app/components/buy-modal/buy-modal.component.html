@@ -42,7 +42,7 @@
                     <button type="button" class="btn btn-success" (click)="addToPortfolio(qty.value)" disabled>Buy</button>
                 </div>
                 <div *ngIf="this.numberOfSharesModalValue != '' ">
-                    <button type="button" class="btn btn-success" (click)="addToPortfolio(qty.value)">Buy</button>
+                    <button type="button" class="btn btn-success" (click)="addToPortfolio(qty.value)" (click)='modal.close()'>Buy</button>
                 </div>
             </div>
         </div>

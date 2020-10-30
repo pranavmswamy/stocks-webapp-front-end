@@ -1,5 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap'
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap'
 import { PortfolioService } from '../../services/portfolio.service'
 
 @Component({
@@ -10,6 +10,7 @@ import { PortfolioService } from '../../services/portfolio.service'
 export class BuyModalComponent implements OnInit {
   @Input() companyDescription;
   @Input() latestPrice;
+  @Output() boughtEvent = new EventEmitter();
   numberOfSharesModalValue = '';
   constructor(
     private buyModal: NgbModal,
@@ -20,7 +21,9 @@ export class BuyModalComponent implements OnInit {
   }
 
   openBuyModal(content) {
-    this.buyModal.open(content);
+    this.buyModal.open(content).result.then(() => {
+      this.boughtEvent.emit();
+    });
   }
 
 
@@ -32,7 +35,6 @@ export class BuyModalComponent implements OnInit {
   addToPortfolio(numStocks) {
     
     this.portfolio.addStock(this.companyDescription.ticker.toLowerCase(), this.latestPrice.last, parseInt(numStocks));
-    
   }
 
 }

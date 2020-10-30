@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { interval } from 'rxjs';
 import { PortfolioService } from 'src/app/services/portfolio.service';
 import { TiingoService } from '../../services/tiingo.service'
 @Component({
@@ -21,6 +22,16 @@ export class MyStockComponent implements OnInit {
        // call latest price
        this.tiingo.getLatestPrice(this.ticker).subscribe(data => {
         this.latestPrice = data;
+
+        if(this.latestPrice.mid != null) {
+          // call every 30s
+          interval(0.5*60*1000).subscribe(() => {
+            this.tiingo.getLatestPrice(this.ticker).subscribe(data => {
+              this.latestPrice = data;
+              console.log("Updating price for", this.ticker, this.latestPrice.last)
+            })
+          })
+        }
       })
       
       // call companyDesc

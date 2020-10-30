@@ -14,7 +14,7 @@ export class SearchComponent implements OnInit {
   @Output() searchClicked = new EventEmitter()
   @Output() goToDetailsEvent = new EventEmitter()
   searchForm = new FormControl()
-  autoCompleteOptions = []
+  autoCompleteOptions = [];
 
   constructor(
     private tiingo: TiingoService
@@ -40,6 +40,13 @@ export class SearchComponent implements OnInit {
       })
     }
     else {
+      this.autoCompleteOptions = [];
+    } 
+  }
+
+  checkIfEmpty(text) {
+    if(text == "") {
+      console.log("entered empty ")
       this.autoCompleteOptions = [];
     } 
   }

@@ -26,10 +26,11 @@ export class TiingoService {
   }
 
   getDailyChartData(ticker) {
-    let resampleFreq = "4min"
-    let curDate = new Date()
-    let twoYearsAgo = `${curDate.getFullYear()-2}-${curDate.getMonth()}-${curDate.getDate()}`
-    const dailyChartDataUrl = `http://localhost:3000/daily-chart-data?companyName=${ticker}&startDate=${twoYearsAgo}&resampleFreq=${resampleFreq}`
+    let resampleFreq = "1min"
+    let oneDayAgoObj = new Date();
+    oneDayAgoObj.setDate(oneDayAgoObj.getDate() - 1);
+    let oneDayAgo = `${oneDayAgoObj.getFullYear()}-${oneDayAgoObj.getMonth()+1}-${oneDayAgoObj.getDate()}`
+    const dailyChartDataUrl = `http://localhost:3000/daily-chart-data?companyName=${ticker}&startDate=${oneDayAgo}&resampleFreq=${resampleFreq}`
     console.log('daily-chart-data - ', dailyChartDataUrl)
     return this.http.get(dailyChartDataUrl)
   }
@@ -39,7 +40,7 @@ export class TiingoService {
     // resampleFreq - 4 min
     let resampleFreq = "daily"
     let curDate = new Date()
-    let twoYearsAgo = `${curDate.getFullYear()-2}-${curDate.getMonth()}-${curDate.getDate()}`
+    let twoYearsAgo = `${curDate.getFullYear()-2}-${curDate.getMonth()+1}-${curDate.getDate()}`
     const historicalDataUrl = `http://localhost:3000/historical-data?companyName=${ticker}&startDate=${twoYearsAgo}&resampleFreq=${resampleFreq}`
     console.log('historical data- ', historicalDataUrl)
     return this.http.get(historicalDataUrl)

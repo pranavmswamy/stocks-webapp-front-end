@@ -23,8 +23,16 @@
                 <p> {{ this.companyDescription.description }} </p>
             </div>
         </div>
-        <div class="col">
+        <div class="col" *ngIf='this.charts_data != undefined'>
             Chart Data
+            <highcharts-chart
+                    *ngIf="isHighcharts"
+                    [Highcharts]="Highcharts"
+                    [constructorType]="chartConstructor"
+                    [options]="chartOptions"
+                    [(update)]='updateFlag'
+                    > 
+            </highcharts-chart>
         </div>
     </div>  
 </div>
