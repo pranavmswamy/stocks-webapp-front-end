@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { interval } from 'rxjs';
 import { PortfolioService } from 'src/app/services/portfolio.service';
 import { TiingoService } from '../../services/tiingo.service'
@@ -11,6 +11,8 @@ export class MyStockComponent implements OnInit {
   @Input() ticker;
   companyDescription;
   latestPrice;
+  @Output() finishedLoading = new EventEmitter()
+  @Output() updateMyStocks = new EventEmitter()
 
   constructor(
     private tiingo: TiingoService,
@@ -22,6 +24,8 @@ export class MyStockComponent implements OnInit {
        // call latest price
        this.tiingo.getLatestPrice(this.ticker).subscribe(data => {
         this.latestPrice = data;
+
+        this.finishedLoading.emit()
 
         if(this.latestPrice.mid != null) {
           // call every 30s
@@ -51,11 +55,15 @@ export class MyStockComponent implements OnInit {
 
   getAvgCost() {
     // js can do string/string numeric division
-    return this.portfolio.getPortfolio()[this.ticker]['totalcost'] / this.portfolio.getPortfolio()[this.ticker]['totalcost'];
+    return this.portfolio.getPortfolio()[this.ticker]['totalcost'] / this.portfolio.getPortfolio()[this.ticker]['quantity'];
   }
 
   getTotalCost() {
     return this.portfolio.getPortfolio()[this.ticker]['totalcost']
+  }
+
+  emitUpdateMyStocks() {
+    this.updateMyStocks.emit();
   }
 
 

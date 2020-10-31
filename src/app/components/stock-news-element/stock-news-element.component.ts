@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap'
-import {  } from '@fortawesome/fontawesome-common-types'
+import {  } from '@fortawesome/free-solid-svg-icons'
 
 @Component({
   selector: 'app-stock-news-element',
@@ -27,4 +27,11 @@ export class StockNewsElementComponent implements OnInit {
     this.newsModal.open(content);
   }
 
+  getTwitterHref() {
+    return `https://twitter.com/intent/tweet?text=${this.newsElement.title}%20${this.newsElement.url}`
+  }
+
+  getFacebookHref() {
+    return `https://www.facebook.com/sharer/sharer.php?u=${this.newsElement.url}&amp;src=sdkpreparse`
+  }
 }

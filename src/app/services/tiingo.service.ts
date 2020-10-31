@@ -25,12 +25,12 @@ export class TiingoService {
     return this.http.get(companyDescriptionUrl)
   }
 
-  getDailyChartData(ticker) {
+  getDailyChartData(ticker, date) {
     let resampleFreq = "1min"
-    let oneDayAgoObj = new Date();
-    oneDayAgoObj.setDate(oneDayAgoObj.getDate() - 1);
-    let oneDayAgo = `${oneDayAgoObj.getFullYear()}-${oneDayAgoObj.getMonth()+1}-${oneDayAgoObj.getDate()}`
-    const dailyChartDataUrl = `http://localhost:3000/daily-chart-data?companyName=${ticker}&startDate=${oneDayAgo}&resampleFreq=${resampleFreq}`
+    let d = new Date(date);
+    //oneDayAgoObj.setDate(oneDayAgoObj.getDate() - 1);
+    let today = `${d.getFullYear()}-${d.getMonth()+1}-${d.getDate()}`
+    const dailyChartDataUrl = `http://localhost:3000/daily-chart-data?companyName=${ticker}&startDate=${today}&resampleFreq=${resampleFreq}`
     console.log('daily-chart-data - ', dailyChartDataUrl)
     return this.http.get(dailyChartDataUrl)
   }

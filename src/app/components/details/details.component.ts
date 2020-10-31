@@ -19,6 +19,7 @@ export class DetailsComponent implements OnInit {
   news;
   latestPrice;
   currentTime;
+  validStock = true;
 
   private _success = new Subject<string>();
   private _addedW = new Subject<string>();
@@ -44,6 +45,12 @@ export class DetailsComponent implements OnInit {
       // call getCompanyDescription from tiingo service
       this.tiingo.getCompanyDescription(this.ticker).subscribe(data => {
         this.companyDescription = data;
+        if('detail' in this.companyDescription) {
+          this.validStock = false;
+        }
+        else {
+          this.validStock = true;
+        }
       })
 
       // call first time
@@ -52,12 +59,14 @@ export class DetailsComponent implements OnInit {
         console.log(this.latestPrice.last)
       })
 
+
       // call every 30s
       interval(0.5*60*1000).subscribe(() => {
         this.tiingo.getLatestPrice(this.ticker).subscribe(data => {
           this.latestPrice = data;
           console.log(this.latestPrice.last)
         })
+        
         this.currentTime = this.getCurrentTimestamp();
         console.log("Called every 30s")
       })
@@ -107,6 +116,11 @@ export class DetailsComponent implements OnInit {
   getCurrentTimestamp(): string {
     let currentTime = new Date()
     return currentTime.toISOString().substring(0,10) + " " + currentTime.toISOString().substring(11,19);
+  }
+
+  getLastOpenTimeStamp(): string {
+    let lastOpen = new Date(this.latestPrice.timestamp)
+    return lastOpen.toISOString().substring(0,10) + " " + lastOpen.toISOString().substring(11,19);
   }
 
   getPriceChange() {

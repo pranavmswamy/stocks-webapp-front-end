@@ -30,11 +30,11 @@ export class StockSummaryComponent implements OnInit {
 
   ngOnInit(): void {
 
-    if( this.ticker != undefined) {
+    if( this.ticker != undefined && this.latestPrice != undefined) {
 
 
         // call daily chart data from tiingo 
-        this.tiingo.getDailyChartData(this.ticker).subscribe(data => {
+        this.tiingo.getDailyChartData(this.ticker, this.latestPrice.timestamp).subscribe(data => {
           this.charts_data = data;
   
           // have to convert time in UTC to time in milliseconds. So, convert and reassign to charts_data.
@@ -46,7 +46,7 @@ export class StockSummaryComponent implements OnInit {
           }
           // reassign
           this.charts_data = timeConvertedPriceData;
-          console.log("inside fn-",this.charts_data)
+          //console.log("inside fn-",this.charts_data)
   
           let changeColor = ""
           if(this.latestPrice.last - this.latestPrice.prevClose > 0) {
@@ -85,12 +85,12 @@ export class StockSummaryComponent implements OnInit {
 
 
       
-      interval(1*60*1000).subscribe(() => {
+      interval(0.25*60*1000).subscribe(() => {
 
 
 
         // call daily chart data from tiingo 
-      this.tiingo.getDailyChartData(this.ticker).subscribe(data => {
+      this.tiingo.getDailyChartData(this.ticker, this.latestPrice.timestamp).subscribe(data => {
         this.charts_data = data;
 
         // have to convert time in UTC to time in milliseconds. So, convert and reassign to charts_data.
@@ -102,7 +102,10 @@ export class StockSummaryComponent implements OnInit {
         }
         // reassign
         this.charts_data = timeConvertedPriceData;
-        console.log("inside fn-",this.charts_data)
+
+        //var half_length = Math.ceil(this.charts_data.length / 2);    
+        //this.charts_data = this.charts_data.splice(half_length, this.charts_data.length);
+        //console.log("inside fn-",this.charts_data)
 
         let changeColor = ""
         if(this.latestPrice.last - this.latestPrice.prevClose > 0) {

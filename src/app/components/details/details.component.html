@@ -1,8 +1,8 @@
 <div class="container">
-    <div *ngIf='this.companyDescription != undefined && this.latestPrice != undefined'>
+    <div *ngIf='this.companyDescription != undefined && this.latestPrice != undefined && this.validStock'>
         <ngb-alert class="text-center" *ngIf='boughtStockSuccess' type="success" (close)="boughtStockSuccess = ''"> {{ boughtStockSuccess }} </ngb-alert>
-    <ngb-alert *ngIf='addedToWatchlist' type="success" (close)="addedToWatchlist = ''"> {{ addedToWatchlist }} </ngb-alert>
-    <ngb-alert *ngIf='removedFromWatchlist' type="danger" (close)="removedFromWatchlist = ''"> {{ removedFromWatchlist }} </ngb-alert>
+        <ngb-alert *ngIf='addedToWatchlist' type="success" (close)="addedToWatchlist = ''"> {{ addedToWatchlist }} </ngb-alert>
+        <ngb-alert *ngIf='removedFromWatchlist' type="danger" (close)="removedFromWatchlist = ''"> {{ removedFromWatchlist }} </ngb-alert>
         <div class="row">
             <div class="col">
                 <div *ngIf="this.companyDescription != undefined">
@@ -32,19 +32,37 @@
             </div>
             <div class="col move-right">
                 <div *ngIf='this.latestPrice != undefined'>
-                    <span> {{ this.latestPrice.last }} </span> <br>
-                    <span> {{ this.getPriceChange() }} ( {{ this.getPriceChangePercent() }}% )</span> <br>
-                    <span> {{ this.currentTime }} </span>
+                    <div [ngClass]='{
+                        "red": this.latestPrice.last - this.latestPrice.prevClose < 0,
+                        "green": this.latestPrice.last - this.latestPrice.prevClose > 0,
+                        "black": this.latestPrice.last - this.latestPrice.prevClose == 0
+                      }'>
+                        <span> {{ this.latestPrice.last }} </span> <br>
+                        <span *ngIf='this.latestPrice.last - this.latestPrice.prevClose > 0'> 
+                            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-caret-up-fill" fill="green" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M7.247 4.86l-4.796 5.481c-.566.647-.106 1.659.753 1.659h9.592a1 1 0 0 0 .753-1.659l-4.796-5.48a1 1 0 0 0-1.506 0z"/>
+                              </svg>
+                        </span>
+                        <span *ngIf='this.latestPrice.last - this.latestPrice.prevClose < 0'>
+                            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-caret-down-fill" fill="red" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+                              </svg>
+                        </span>
+                        <span> {{ this.getPriceChange() }} ( {{ this.getPriceChangePercent() }}% )</span> <br>
+                        <span> {{ this.currentTime }} </span>
+                    </div>
                 </div>
             </div>
         </div>
     
-        <div class="row text-center" *ngIf='this.latestPrice.mid != null'>
+        <div class="row text-center" *ngIf='this.latestPrice.bidPrice != null || this.latestPrice.bidPrice > 0 else marketClosed'>
             <span id="green"> Market is Open </span>
         </div>
-        <div *ngIf='this.latestPrice.mid == null'>
-            <span id="red"> Market is closed </span>
-        </div>
+        <ng-template #marketClosed>
+            <div>
+                <span class="red"> Market Closed on {{ getLastOpenTimeStamp() }}</span>
+            </div>
+        </ng-template>
     
         <div class="row">
             <mat-tab-group mat-stretch-tabs>
@@ -60,8 +78,13 @@
             </mat-tab-group>
         </div>
     </div>
-    <div class="" *ngIf='this.companyDescription == undefined || this.latestPrice == undefined'>
+    <div class="" *ngIf='(this.companyDescription == undefined || this.latestPrice == undefined) && this.validStock'>
         <mat-spinner> </mat-spinner>
+    </div>
+    <div *ngIf='!this.validStock'>
+        <div class="row card">
+            No results found. Please enter valid ticker.
+        </div>
     </div>
 </div>
 

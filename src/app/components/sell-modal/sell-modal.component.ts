@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { PortfolioService } from '../../services/portfolio.service'
 
@@ -10,6 +10,7 @@ import { PortfolioService } from '../../services/portfolio.service'
 export class SellModalComponent implements OnInit {
   @Input() latestPrice;
   @Input() ticker;
+  @Output() sold = new EventEmitter()
   qtyLimit = 0;
   numberOfSharesModalValue = 0;
   constructor(
@@ -49,6 +50,8 @@ export class SellModalComponent implements OnInit {
   sell(qty) {
 
     this.portfolio.sellStock(this.ticker.toLowerCase(), parseInt(qty), this.latestPrice.last);
+    this.sold.emit();
+    this.sellModal.dismissAll()
 
   }
 

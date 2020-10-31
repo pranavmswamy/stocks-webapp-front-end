@@ -1,7 +1,11 @@
-#green {
+.green {
     color: green;
 }
 
-#red {
+.red {
     color: red;
+}
+
+.black {
+    color: black;
 }

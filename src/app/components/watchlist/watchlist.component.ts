@@ -10,7 +10,7 @@ import {WatchlistService} from '../../services/watchlist.service'
   styleUrls: ['./watchlist.component.css']
 })
 export class WatchlistComponent implements OnInit {
-  favoriteStocks;
+  favoriteStocks = [];
   
   private _removedW = new Subject<string>();
   removedFromWatchlist;
@@ -23,12 +23,9 @@ export class WatchlistComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.spinnerSpin = true;
     this.noOfChildrenFinishedLoading = 0;
-    this.favoriteStocks = Object.keys(this.watchlist.getWatchList());
-    
-    setTimeout(() => {
-      this.spinnerSpin = false;
-    }, 2000)
+    this.favoriteStocks = Object.keys(this.watchlist.getWatchList()).sort();
 
     this._removedW.subscribe(message => this.removedFromWatchlist = message);
       this._removedW.pipe(
@@ -42,14 +39,15 @@ export class WatchlistComponent implements OnInit {
     // update watchlist service
     this.watchlist.removeFromWatchList(ticker.toLowerCase());
     // update class var favStocks
-    this.favoriteStocks = Object.keys(this.watchlist.getWatchList());
+    this.favoriteStocks = Object.keys(this.watchlist.getWatchList()).sort();
   }
 
   countFinishedLoadingEvents() {
     this.noOfChildrenFinishedLoading++;
+    console.log("Finished loading child comp", this.noOfChildrenFinishedLoading)
     if(this.noOfChildrenFinishedLoading == this.favoriteStocks.length) {
       this.spinnerSpin = false;
+      console.log("Set spinner to false at loaded child- ", this.noOfChildrenFinishedLoading)
     }
   }
-
 }

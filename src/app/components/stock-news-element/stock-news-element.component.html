@@ -1,22 +1,4 @@
 <div>
-
-    <script>window.twttr = (function(d, s, id) {
-        var js, fjs = d.getElementsByTagName(s)[0],
-          t = window.twttr || {};
-        if (d.getElementById(id)) return t;
-        js = d.createElement(s);
-        js.id = id;
-        js.src = "https://platform.twitter.com/widgets.js";
-        fjs.parentNode.insertBefore(js, fjs);
-      
-        t._e = [];
-        t.ready = function(f) {
-          t._e.push(f);
-        };
-      
-        return t;
-      }(document, "script", "twitter-wjs"));</script>
-    
     <div class="card bg-light mb-3" (click)="openNewsModal(newsModal)">
         <div class="card-body">
             <div class="row">
@@ -34,9 +16,7 @@
         
         <div class="modal-header">
           <h4 class="modal-title" id="modal-basic-title">{{ this.newsElement.source.name }}</h4>
-          <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-            <span aria-hidden="true">&times;</span>
-          </button>
+          <button type="button" class="close" (click)="modal.dismiss('Cross click')"> </button>
           <h5> {{ this.getFormattedDate(this.newsElement.publishedAt) }} </h5>
         </div>
 
@@ -48,7 +28,25 @@
 
         <div class="card">
             <p> Share </p>
-            <a class="twitter-share-button" href="https://twitter.com/intent/tweet">Tweet</a>
+            
+            <a href={{getTwitterHref()}}
+                target="_blank"
+                class="twitter-share-button" 
+                  data-size="large" 
+                    data-show-count="false"><i class="fab fa-twitter"></i></a>
+            <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+            <div id="fb-root"></div>
+            <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v8.0" nonce="xn1slEdy"></script>
+            <div class="fb-share-button" 
+                  data-href="https://developers.facebook.com/docs/plugins/" 
+                  data-layout="button" data-size="large">
+                  
+                  <a target="_blank" href={{getFacebookHref()}} 
+                    class="fb-xfbml-parse-ignore"><i class="fab fa-facebook-square"></i></a></div>
+            
+                  
+
         </div>
 
     </ng-template>

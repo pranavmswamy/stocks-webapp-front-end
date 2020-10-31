@@ -9,8 +9,9 @@
                     Prev. Close: {{ this.latestPrice.prevClose }} <br>
                     Volume: {{ this.latestPrice.volume }} <br>
                 </div>
-                <div class="col" *ngIf="this.latestPrice.mid != null">
-                    Mid Price: {{ this.latestPrice.mid }} <br>
+                <div class="col" *ngIf="this.latestPrice.bidPrice!= null">
+                    Mid Price: <span *ngIf='latestPrice.mid'> {{ this.latestPrice.mid }} </span> 
+                                <span *ngIf='latestPrice.mid == null'> - </span> <br>
                     Ask Price: {{ this.latestPrice.askPrice }} <br>
                     Ask Size: {{ this.latestPrice.askSize }} <br>
                     Bid Price: {{ this.latestPrice.bidPrice }} <br>

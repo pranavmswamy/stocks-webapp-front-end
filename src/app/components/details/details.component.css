@@ -2,12 +2,14 @@
     text-align: right;
 } 
 
-#green {
+.green {
     color: green;
-    background-color: greenyellow;
 }
 
-#red {
+.red {
     color: red;
-    background-color: red;
+}
+
+.black {
+    color: black;
 }

@@ -1,6 +1,21 @@
 <div class="container">
     <h1> My Portfolio </h1>
-    <div class="row" *ngFor="let myStock of myStocks">
-        <app-my-stock [ticker]='myStock'> </app-my-stock>
-    </div>
+    
+    <ng-container *ngIf='myStocks.length > 0 else empty'>
+        <div *ngIf='spinnerSpin'>
+            <mat-spinner> </mat-spinner>
+        </div>
+        <div [hidden]='this.noOfChildrenLoaded < myStocks.length'>
+            <div class="row" *ngFor="let myStock of myStocks">
+                <app-my-stock [ticker]='myStock'
+                            (finishedLoading)='countFinishedLoadingChildren()'
+                            (updateMyStocks)='updateMyStocks()'> </app-my-stock>
+            </div>
+        </div>
+    </ng-container>
+    <ng-template #empty>
+        <div class="row card">
+            Currently you don't have any stock.
+        </div>
+    </ng-template>
 </div>

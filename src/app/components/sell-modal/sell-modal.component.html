@@ -34,7 +34,7 @@
         <div class="row">
             <div class="col-10">
                 <div *ngIf="this.numberOfSharesModalValue != 0 && this.numberOfSharesModalValue <= this.qtyLimit">
-                    Total: {{ numberOfSharesModalValue*this.latestPrice.last }}
+                    Total: {{ (numberOfSharesModalValue*this.latestPrice.last).toFixed(2) }}
                 </div>
             </div>
             <div class="col-2">
