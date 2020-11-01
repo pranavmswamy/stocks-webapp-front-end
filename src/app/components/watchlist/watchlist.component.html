@@ -1,24 +1,33 @@
-<div class="container">
-    <ngb-alert *ngIf='removedFromWatchlist' type="danger" (close)="removedFromWatchlist = ''"> {{ removedFromWatchlist }} </ngb-alert>
+<div class="container-fluid">
+    <div class="row d-flex justify-content-center">
+        <div class="col-md-8 col-xs-12 ml-3 mr-3">
+            <ngb-alert *ngIf='removedFromWatchlist' type="danger" (close)="removedFromWatchlist = ''"> {{ removedFromWatchlist }} </ngb-alert>
    
-    <h1> My Watchlist</h1>
-    <ng-container *ngIf="favoriteStocks.length > 0 else empty">
-        <div *ngIf='spinnerSpin'>
-            <mat-spinner> </mat-spinner>
+            <p class="h1 mt-5 mb-5"> My Watchlist </p>
+
+            <ng-container *ngIf="favoriteStocks.length > 0 else empty">
+                <div class="row d-flex justify-content-center">
+                    <div class="col-sm-4">
+                        <mat-spinner *ngIf='spinnerSpin'> </mat-spinner>
+                    </div>
+                </div>
+                <div class="container-fluid" [hidden]='this.noOfChildrenFinishedLoading < favoriteStocks.length'>
+                    <div class="row card pl-1 pr-1" *ngFor="let favorite of favoriteStocks">
+                        <div class="float-right">
+                            <button type="button" class="close" (click)='changeRemovedFromWatchList(favorite)'>
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <app-favorite-stock  [ticker]='favorite'
+                                            (finishedLoading)='countFinishedLoadingEvents()'> </app-favorite-stock>
+                    </div>
+                </div>    
+            </ng-container>
+            <ng-template #empty>
+                <div class="row card">
+                    Currently you don't have any stock in your watchlist.
+                </div>
+            </ng-template>
         </div>
-        <div [hidden]='this.noOfChildrenFinishedLoading < favoriteStocks.length'>
-            <div class="row card" *ngFor="let favorite of favoriteStocks">
-                <button type="button" class="close" aria-label="Close" (click)='changeRemovedFromWatchList(favorite)'>
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                <app-favorite-stock  [ticker]='favorite'
-                                    (finishedLoading)='countFinishedLoadingEvents()'> </app-favorite-stock>
-            </div>
-        </div>    
-    </ng-container>
-    <ng-template #empty>
-        <div class="row card">
-            Currently you don't have any stock in your watchlist.
-        </div>
-    </ng-template>
+    </div>
 </div>

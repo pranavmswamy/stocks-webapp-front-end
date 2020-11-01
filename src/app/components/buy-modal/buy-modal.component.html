@@ -49,4 +49,5 @@
     </div>
 </ng-template>
 
-<button class="btn btn-success" (click)='this.openBuyModal(buyModal)'> Buy </button>
+<button class="btn btn-success" *ngIf='this.comingFrom=="details"' (click)='this.openBuyModal(buyModal)'> Buy </button>
+<button class="btn btn-primary" *ngIf='this.comingFrom=="portfolio"' (click)='this.openBuyModal(buyModal)'> Buy </button>

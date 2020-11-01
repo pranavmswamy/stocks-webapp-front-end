@@ -27,7 +27,8 @@
                     <app-buy-modal 
                         [companyDescription]='this.companyDescription'
                         [latestPrice]='this.latestPrice'
-                        (boughtEvent)='this.changeSuccessMessage()'> </app-buy-modal>
+                        (boughtEvent)='this.changeSuccessMessage()'
+                        [comingFrom]='"details"'> </app-buy-modal>
                 </div>
             </div>
             <div class="col move-right">

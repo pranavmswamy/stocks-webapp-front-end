@@ -9,3 +9,12 @@
 .black {
     color: black;
 }
+
+table {
+    font-size: 170%;
+}
+
+td {
+    padding-top: 1%;
+    padding-bottom: 1%;
+}

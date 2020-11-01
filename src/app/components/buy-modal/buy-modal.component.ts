@@ -10,6 +10,7 @@ import { PortfolioService } from '../../services/portfolio.service'
 export class BuyModalComponent implements OnInit {
   @Input() companyDescription;
   @Input() latestPrice;
+  @Input() comingFrom;
   @Output() boughtEvent = new EventEmitter();
   numberOfSharesModalValue = '';
   constructor(

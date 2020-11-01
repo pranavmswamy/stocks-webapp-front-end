@@ -1,56 +1,95 @@
-<div class="card">
+<div class="row card">
     <div class="card-header" [routerLink]="['../details', this.companyDescription.ticker]">
-        <h4 class="card-title"> {{ this.companyDescription.ticker }} </h4>
-        {{ this.companyDescription.name }}
+        <span class="h2"> {{ this.companyDescription.ticker }} </span>
+        <span class="h4 text-muted"> {{ this.companyDescription.name }} </span>
     </div>
     <div class="card-body">
         <div class="row">
-            <div class="col">
-                <div class="row">
-                    <div class="col">
-                        Quantity: <br>
-                        Avg. Cost / Share: <br>
-                        Total Cost: <br>
-                    </div>
-                    <div class="col">
-                        {{ getQuantity()}} <br>
-                        {{ getAvgCost().toFixed(2) }} <br>
-                        {{ getTotalCost().toFixed(2) }} <br>
-                    </div>
-                </div>
+            <div class="col-md-6">
+                <table class="w-100">
+                    <tr>
+                        <td>
+                            Quantity:
+                        </td>
+                        <td class="text-right">
+                            {{ getQuantity() }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Avg. Cost / Share:
+                        </td>
+                        <td class="text-right">
+                            {{ getAvgCost().toFixed(2) }}
+                        </td>
+                    </tr>  
+                    <tr>
+                        <td>
+                            Total Cost:
+                        </td>
+                        <td class="text-right">
+                            {{ getTotalCost().toFixed(2) }} 
+                        </td>
+                    </tr>  
+                </table>
             </div>
-            <div class="col">
-                <div class="row">
-                    <div class="col">
-                        Change: <br>
-                        Current Price: <br>
-                        Market Value: <br>
-                    </div>
-                    <div class="col" [ngClass]='{
-                        "red": this.latestPrice.last - getAvgCost() < 0,
-                        "green": this.latestPrice.last - getAvgCost() > 0,
-                        "black": this.latestPrice.last - getAvgCost() == 0
-                      }'>
-                      <span *ngIf='this.latestPrice.last - getAvgCost() > 0'> 
-                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-caret-up-fill" fill="green" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M7.247 4.86l-4.796 5.481c-.566.647-.106 1.659.753 1.659h9.592a1 1 0 0 0 .753-1.659l-4.796-5.48a1 1 0 0 0-1.506 0z"/>
-                          </svg>
-                    </span>
-                    <span *ngIf='this.latestPrice.last - getAvgCost() < 0'>
-                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-caret-down-fill" fill="red" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
-                          </svg>
-                    </span>
-                      {{ (this.latestPrice.last - getAvgCost()).toFixed(2) }} <br>
-                      {{ this.latestPrice.last }} <br>
-                      {{ (this.latestPrice.last*getQuantity()).toFixed(2) }} <br>
-                    </div>
-                </div>
+            <div class="col-md-6">
+                <table class="w-100">
+                    <tr>
+                        <td>
+                            Change:
+                        </td>
+                        <td [ngClass]='{
+                            "red": this.latestPrice.last - getAvgCost() < 0,
+                            "green": this.latestPrice.last - getAvgCost() > 0,
+                            "black": this.latestPrice.last - getAvgCost() == 0,
+                            "text-right": true
+                          }'>
+                            <span *ngIf='this.latestPrice.last - getAvgCost() > 0'> 
+                                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-caret-up-fill" fill="green" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M7.247 4.86l-4.796 5.481c-.566.647-.106 1.659.753 1.659h9.592a1 1 0 0 0 .753-1.659l-4.796-5.48a1 1 0 0 0-1.506 0z"/>
+                                  </svg>
+                                </span>
+                                <span *ngIf='this.latestPrice.last - getAvgCost() < 0'>
+                                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-caret-down-fill" fill="red" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+                                    </svg>
+                                </span>
+                                 {{ (this.latestPrice.last - getAvgCost()).toFixed(2) }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Current Price:
+                        </td>
+                        <td [ngClass]='{
+                            "red": this.latestPrice.last - getAvgCost() < 0,
+                            "green": this.latestPrice.last - getAvgCost() > 0,
+                            "black": this.latestPrice.last - getAvgCost() == 0,
+                            "text-right": true
+                          }'>
+                            {{ this.latestPrice.last }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Market Value:
+                        </td>
+                        <td [ngClass]='{
+                            "red": this.latestPrice.last - getAvgCost() < 0,
+                            "green": this.latestPrice.last - getAvgCost() > 0,
+                            "black": this.latestPrice.last - getAvgCost() == 0,
+                            "text-right": true
+                          }'>
+                            {{ (this.latestPrice.last*getQuantity()).toFixed(2) }}
+                        </td>
+                    </tr>
+                </table>
             </div>
         </div>
     </div>
     <div class="card-footer">
-        <app-buy-modal [companyDescription]='this.companyDescription' [latestPrice]='this.latestPrice'> </app-buy-modal>
-        <app-sell-modal [latestPrice]='this.latestPrice' [ticker]='this.companyDescription.ticker.toLowerCase()' (sold)='emitUpdateMyStocks()'> </app-sell-modal>
+        <app-sell-modal class="float-right " [latestPrice]='this.latestPrice' [ticker]='this.companyDescription.ticker.toLowerCase()' (sold)='emitUpdateMyStocks() '> </app-sell-modal>
+        <app-buy-modal class="float-right mr-3" [companyDescription]='this.companyDescription' [latestPrice]='this.latestPrice' [comingFrom]='"portfolio"' > </app-buy-modal>
     </div>
 </div>

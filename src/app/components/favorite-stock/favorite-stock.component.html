@@ -1,14 +1,17 @@
 <div class="row" [routerLink]="['../details', this.companyDescription.ticker]">
     <div class="col">
-        <span> {{this.companyDescription.ticker }} </span> <br>
-        <span> {{ this.companyDescription.name }} </span>
+        <p class="h2 mt-2 mb-2 ml-4"> {{this.companyDescription.ticker }} </p>
+        <p class="h4 mt-2 mb-2 ml-4"> {{ this.companyDescription.name }} </p>
     </div>
-    <div class="col" [ngClass]='{
+    <div [ngClass]='{
         "red": this.latestPrice.last - this.latestPrice.prevClose < 0,
         "green": this.latestPrice.last - this.latestPrice.prevClose > 0,
-        "black": this.latestPrice.last - this.latestPrice.prevClose == 0
+        "black": this.latestPrice.last - this.latestPrice.prevClose == 0,
+        "col": true,
+        "text-right": true
       }'>
-        <span> {{ this.latestPrice.last }} </span> <br>
+        <p class="h2 mt-2 mb-2 mr-4"> {{ this.latestPrice.last }} </p>
+        <p class="h4 mt-2 mb-2 mr-4">
         <span *ngIf='this.latestPrice.last - this.latestPrice.prevClose > 0'> 
             <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-caret-up-fill" fill="green" xmlns="http://www.w3.org/2000/svg">
                 <path d="M7.247 4.86l-4.796 5.481c-.566.647-.106 1.659.753 1.659h9.592a1 1 0 0 0 .753-1.659l-4.796-5.48a1 1 0 0 0-1.506 0z"/>
@@ -19,6 +22,6 @@
                 <path d="M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
               </svg>
         </span>
-        <span> {{ this.getPriceChange() }} ( {{ this.getPriceChangePercent() }}% ) </span> <br>
+         {{ this.getPriceChange() }} ({{ this.getPriceChangePercent() }}%) </p>
     </div>
 </div>
