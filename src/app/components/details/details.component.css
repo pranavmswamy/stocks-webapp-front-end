@@ -1,7 +1,3 @@
-.move-right {
-    text-align: right;
-} 
-
 .green {
     color: green;
 }
@@ -12,4 +8,8 @@
 
 .black {
     color: black;
+}
+
+.yellow {
+    background-color: yellow;
 }

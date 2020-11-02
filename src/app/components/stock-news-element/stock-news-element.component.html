@@ -1,16 +1,15 @@
 <div>
-    <div class="card bg-light mb-3" (click)="openNewsModal(newsModal)">
-        <div class="card-body">
-            <div class="row">
-                <div class="col-3">
-                    <img src={{this.newsElement.urlToImage}}>
-                </div>
-                <div class="col-9">
-                    <p> {{ this.newsElement.title }} </p>
-                </div>
+    <div class="card-body" (click)="openNewsModal(newsModal)">
+        <div class="row">
+            <div class="col-3">
+                <img src={{this.newsElement.urlToImage}}>
+            </div>
+            <div class="col-9">
+                <p> {{ this.newsElement.title }} </p>
             </div>
         </div>
     </div>
+
 
     <ng-template #newsModal let-modal>
         

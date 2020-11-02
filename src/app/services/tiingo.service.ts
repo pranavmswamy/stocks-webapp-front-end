@@ -26,7 +26,7 @@ export class TiingoService {
   }
 
   getDailyChartData(ticker, date) {
-    let resampleFreq = "1min"
+    let resampleFreq = "4min"
     let d = new Date(date);
     //oneDayAgoObj.setDate(oneDayAgoObj.getDate() - 1);
     let today = `${d.getFullYear()}-${d.getMonth()+1}-${d.getDate()}`

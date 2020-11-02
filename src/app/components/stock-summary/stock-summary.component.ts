@@ -41,7 +41,7 @@ export class StockSummaryComponent implements OnInit {
           let  timeConvertedPriceData = [];
           for(let i=0; i<this.charts_data.length; i++) {
               var currentTime = new Date(this.charts_data[i][0])
-              var convertedTime = Date.UTC(currentTime.getFullYear(), currentTime.getMonth(), currentTime.getDate(), currentTime.getHours()-9, currentTime.getMinutes(), currentTime.getSeconds(), currentTime.getMilliseconds());         
+              var convertedTime = Date.UTC(currentTime.getFullYear(), currentTime.getMonth(), currentTime.getDate(), currentTime.getHours(), currentTime.getMinutes(), currentTime.getSeconds(), currentTime.getMilliseconds());         
               timeConvertedPriceData[i] = [convertedTime, this.charts_data[i][1]]
           }
           // reassign
@@ -97,7 +97,7 @@ export class StockSummaryComponent implements OnInit {
         let  timeConvertedPriceData = [];
         for(let i=0; i<this.charts_data.length; i++) {
             var currentTime = new Date(this.charts_data[i][0])
-            var convertedTime = Date.UTC(currentTime.getFullYear(), currentTime.getMonth(), currentTime.getDate(), currentTime.getHours()-9, currentTime.getMinutes(), currentTime.getSeconds(), currentTime.getMilliseconds());         
+            var convertedTime = Date.UTC(currentTime.getFullYear(), currentTime.getMonth(), currentTime.getDate(), currentTime.getHours(), currentTime.getMinutes(), currentTime.getSeconds(), currentTime.getMilliseconds());         
             timeConvertedPriceData[i] = [convertedTime, this.charts_data[i][1]]
         }
         // reassign

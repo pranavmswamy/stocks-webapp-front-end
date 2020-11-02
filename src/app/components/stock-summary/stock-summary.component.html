@@ -1,31 +1,34 @@
-<div class="container">
+<div class="container-fluid">
     <div class="row">
-        <div class="col">
+        <div class="col-md-6">
             <div class="row" *ngIf="this.latestPrice != undefined">
-                <div class="col">
-                    High Price: {{ this.latestPrice.high }} <br>
-                    Low Price: {{ this.latestPrice.low }} <br>
-                    Open Price: {{ this.latestPrice.open }} <br>
-                    Prev. Close: {{ this.latestPrice.prevClose }} <br>
-                    Volume: {{ this.latestPrice.volume }} <br>
+                <div class="col m-3">
+                    <table>
+                        <tr> <td> High Price: </td> <td> {{ this.latestPrice.high }} </td> </tr>
+                        <tr> <td> Low Price: </td> <td> {{ this.latestPrice.low }} </td> </tr>
+                        <tr> <td> Open Price: </td> <td> {{ this.latestPrice.open }} </td> </tr>
+                        <tr> <td> Prev. Close: </td> <td> {{ this.latestPrice.prevClose }}</td> </tr>
+                        <tr> <td> Volume: </td> <td> {{ this.latestPrice.volume }} </td> </tr>
+                    </table>
                 </div>
-                <div class="col" *ngIf="this.latestPrice.bidPrice!= null">
-                    Mid Price: <span *ngIf='latestPrice.mid'> {{ this.latestPrice.mid }} </span> 
-                                <span *ngIf='latestPrice.mid == null'> - </span> <br>
-                    Ask Price: {{ this.latestPrice.askPrice }} <br>
-                    Ask Size: {{ this.latestPrice.askSize }} <br>
-                    Bid Price: {{ this.latestPrice.bidPrice }} <br>
-                    Bid Size: {{ this.latestPrice.bidSize }}
+                <div class="col m-3" *ngIf="this.latestPrice.bidPrice!= null">
+                    <table>
+                        <tr><td>Mid Price: </td> <td> <span *ngIf='latestPrice.mid'> {{ this.latestPrice.mid }} </span> 
+                            <span *ngIf='latestPrice.mid == null'> - </span> </td></tr>
+                        <tr><td>Ask Price:  </td> <td>  {{ this.latestPrice.askPrice }} </td></tr>
+                        <tr><td>Ask Size:</td> <td> {{ this.latestPrice.askSize }}</td></tr>
+                        <tr><td>Bid Price:  </td> <td>  {{ this.latestPrice.bidPrice }}</td></tr>
+                        <tr><td>Bid Size: </td> <td> {{ this.latestPrice.bidSize }}</td></tr>
+                    </table>
                 </div>
             </div>
-            <div class="row" *ngIf="this.companyDescription != undefined">
-                <h3> Company's Description </h3> <br> <br>
+            <div *ngIf="this.companyDescription != undefined">
+                <p class="h5 text-center"> Company's Description </p>
                 <p> Start Date: {{ this.companyDescription.startDate }} </p>
                 <p> {{ this.companyDescription.description }} </p>
             </div>
         </div>
-        <div class="col" *ngIf='this.charts_data != undefined'>
-            Chart Data
+        <div class="col-md-6" *ngIf='this.charts_data != undefined'>
             <highcharts-chart
                     *ngIf="isHighcharts"
                     [Highcharts]="Highcharts"

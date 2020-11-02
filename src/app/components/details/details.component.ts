@@ -115,12 +115,12 @@ export class DetailsComponent implements OnInit {
 
   getCurrentTimestamp(): string {
     let currentTime = new Date()
-    return currentTime.toISOString().substring(0,10) + " " + currentTime.toISOString().substring(11,19);
+    return currentTime.toISOString().substring(0,10) + " " + currentTime.toTimeString().substring(0,8)
   }
 
   getLastOpenTimeStamp(): string {
     let lastOpen = new Date(this.latestPrice.timestamp)
-    return lastOpen.toISOString().substring(0,10) + " " + lastOpen.toISOString().substring(11,19);
+    return lastOpen.toISOString().substring(0,10) + " " + lastOpen.toTimeString().substring(0,8);
   }
 
   getPriceChange() {

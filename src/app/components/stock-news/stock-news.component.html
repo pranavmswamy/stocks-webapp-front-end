@@ -1,10 +1,15 @@
 <div class="container">
-    <div class="row"  *ngFor="let newsItem of this.news">
-        <div class="col-6">
-          <app-stock-news-element [newsElement]="newsItem[0]"> </app-stock-news-element>
+    <div class="row mt-4"  *ngFor="let newsItem of this.news">
+        <div class="col-md-6">
+          <div class="card w-100 h-100 bg-light">
+            <app-stock-news-element [newsElement]="newsItem[0]"> </app-stock-news-element>
+          </div>
+          
         </div>
-        <div class="col-6">
-          <app-stock-news-element [newsElement]="newsItem[1]"> </app-stock-news-element>
+        <div class="col-md-6">
+          <div class="card w-100 h-100 bg-light">
+            <app-stock-news-element [newsElement]="newsItem[1]"> </app-stock-news-element>
+          </div>
         </div>
     </div>
 </div>
