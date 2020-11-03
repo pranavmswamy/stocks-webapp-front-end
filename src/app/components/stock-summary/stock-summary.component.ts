@@ -70,7 +70,7 @@ export class StockSummaryComponent implements OnInit {
             },
     
             series: [{
-                name: 'AAPL',
+                name: this.ticker.toUpperCase(),
                 type:'line',
                 color: changeColor,
                 data: this.charts_data,
@@ -129,7 +129,7 @@ export class StockSummaryComponent implements OnInit {
           },
   
           series: [{
-              name: 'AAPL',
+              name: this.ticker.toUpperCase(),
               type:'line',
               color: changeColor,
               data: this.charts_data,

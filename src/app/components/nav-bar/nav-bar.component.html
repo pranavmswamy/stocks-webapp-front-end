@@ -6,14 +6,14 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav ml-auto">
-        <li class="nav-item">
-          <a class="nav-link" href="/">Search </a>
+        <li [ngClass]="{'nav-item': true, 'active': search}">
+          <a class="nav-link" routerLink="/" (click)="search = true; port = false; watch = false">Search </a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/watchlist"> Watchlist </a>
+        <li [ngClass]="{'nav-item': true, 'active': watch}" >
+          <a class="nav-link" routerLink="/watchlist" (click)="watch = true; port = false; search = false"> Watchlist </a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/portfolio">Portfolio</a>
+        <li [ngClass]="{'nav-item': true, 'active': port}" >
+          <a class="nav-link" routerLink="/portfolio" (click)="port = true; search = false; watch = false">Portfolio</a>
         </li>
       </ul>
     </div>

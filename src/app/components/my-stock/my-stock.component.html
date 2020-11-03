@@ -40,9 +40,9 @@
                             Change:
                         </td>
                         <td [ngClass]='{
-                            "red": this.latestPrice.last - getAvgCost() < 0,
-                            "green": this.latestPrice.last - getAvgCost() > 0,
-                            "black": this.latestPrice.last - getAvgCost() == 0,
+                            "red": this.latestPrice.last - getAvgCost() < 0 && (this.latestPrice.last - getAvgCost()).toFixed() !== "0.00",
+                            "green": this.latestPrice.last - getAvgCost() > 0 && (this.latestPrice.last - getAvgCost()).toFixed() !== "0.00",
+                            "black": this.latestPrice.last - getAvgCost() == 0 && (this.latestPrice.last - getAvgCost()).toFixed() == "0.00",
                             "text-right": true
                           }'>
                             <span *ngIf='this.latestPrice.last - getAvgCost() > 0'> 
@@ -63,9 +63,9 @@
                             Current Price:
                         </td>
                         <td [ngClass]='{
-                            "red": this.latestPrice.last - getAvgCost() < 0,
-                            "green": this.latestPrice.last - getAvgCost() > 0,
-                            "black": this.latestPrice.last - getAvgCost() == 0,
+                            "red": this.latestPrice.last - getAvgCost() < 0 && (this.latestPrice.last - getAvgCost()).toFixed() !== "0.00",
+                            "green": this.latestPrice.last - getAvgCost() > 0 && (this.latestPrice.last - getAvgCost()).toFixed() !== "0.00",
+                            "black": this.latestPrice.last - getAvgCost() == 0 && (this.latestPrice.last - getAvgCost()).toFixed() == "0.00",
                             "text-right": true
                           }'>
                             {{ this.latestPrice.last }}
@@ -76,9 +76,9 @@
                             Market Value:
                         </td>
                         <td [ngClass]='{
-                            "red": this.latestPrice.last - getAvgCost() < 0,
-                            "green": this.latestPrice.last - getAvgCost() > 0,
-                            "black": this.latestPrice.last - getAvgCost() == 0,
+                            "red": this.latestPrice.last - getAvgCost() < 0 && (this.latestPrice.last - getAvgCost()).toFixed() !== "0.00",
+                            "green": this.latestPrice.last - getAvgCost() > 0 && (this.latestPrice.last - getAvgCost()).toFixed() !== "0.00",
+                            "black": this.latestPrice.last - getAvgCost() == 0 && (this.latestPrice.last - getAvgCost()).toFixed() == "0.00",
                             "text-right": true
                           }'>
                             {{ (this.latestPrice.last*getQuantity()).toFixed(2) }}

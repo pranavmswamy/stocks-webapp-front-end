@@ -1,5 +1,5 @@
-<div class="container-fluid">
-    <div class="row">
+
+    <div class="row mt-2 mx-0">
         <div class="col-md-6">
             <div class="row" *ngIf="this.latestPrice != undefined">
                 <div class="col m-3">
@@ -28,15 +28,19 @@
                 <p> {{ this.companyDescription.description }} </p>
             </div>
         </div>
-        <div class="col-md-6" *ngIf='this.charts_data != undefined'>
-            <highcharts-chart
-                    *ngIf="isHighcharts"
-                    [Highcharts]="Highcharts"
-                    [constructorType]="chartConstructor"
-                    [options]="chartOptions"
-                    [(update)]='updateFlag'
-                    > 
-            </highcharts-chart>
+        <div class="col-md-6">
+            <div class="mx-auto container">
+                <highcharts-chart
+                *ngIf="isHighcharts && this.charts_data != undefined"
+                [Highcharts]="Highcharts"
+                [constructorType]="chartConstructor"
+                [options]="chartOptions"
+                [(update)]='updateFlag'
+
+                style="max-width: inherit; display: block;"
+
+                > 
+                </highcharts-chart>
+            </div>
         </div>
     </div>  
-</div>

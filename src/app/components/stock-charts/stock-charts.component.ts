@@ -86,7 +86,7 @@ export class StockChartsComponent implements OnInit {
           },
   
           title: {
-              text: 'AAPL Historical'
+              text: `${this.ticker.toUpperCase()} Historical`
           },
   
           subtitle: {
@@ -136,7 +136,7 @@ export class StockChartsComponent implements OnInit {
   
           series: [{
               type: 'candlestick',
-              name: 'AAPL',
+              name: this.ticker.toUpperCase(),
               id: 'aapl',
               zIndex: 2,
               data: ohlc

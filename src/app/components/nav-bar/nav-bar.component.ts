@@ -11,6 +11,10 @@ export class NavBarComponent implements OnInit {
   @Output() tabClicked = new EventEmitter()
   activeTab = "SEARCH" // not reqd actually, can directly send through parameter passed to tabChange()
 
+  port = false;
+  watch = false;
+  search = true;
+
   constructor() { }
 
   ngOnInit(): void {

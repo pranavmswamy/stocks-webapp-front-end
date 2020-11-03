@@ -98,6 +98,9 @@ export class DetailsComponent implements OnInit {
 
 
     }
+    else {
+      this.validStock = false;
+    }
   }
 
   changeSuccessMessage() {
