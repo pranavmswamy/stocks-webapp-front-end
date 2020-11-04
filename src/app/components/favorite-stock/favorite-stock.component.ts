@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, OnChanges } from '@angular/core';
 import { interval } from 'rxjs';
 import {TiingoService} from '../../services/tiingo.service'
 
@@ -7,12 +7,14 @@ import {TiingoService} from '../../services/tiingo.service'
   templateUrl: './favorite-stock.component.html',
   styleUrls: ['./favorite-stock.component.css']
 })
-export class FavoriteStockComponent implements OnInit {
+export class FavoriteStockComponent implements OnInit, OnChanges {
   
   @Input() ticker;
   companyDescription;
   latestPrice;
   @Output() finishedLoading = new EventEmitter();
+  @Input() reload;
+  
 
   constructor(
     private tiingo: TiingoService
@@ -28,13 +30,14 @@ export class FavoriteStockComponent implements OnInit {
         // call companyDesc; calling it nested to pass finishedLoading event emitter
         this.tiingo.getCompanyDescription(this.ticker).subscribe(data => {
           this.companyDescription = data;
-
           this.finishedLoading.emit()
+
+          console.log('entered fav-stock and updated latestPrice and companyDesc for ', this.ticker, this.latestPrice.last)
 
         })
 
 
-        if(this.latestPrice.bidPrice != null) {
+        /*if(this.latestPrice.bidPrice != null) {
           // call every 30s
           interval(0.5*60*1000).subscribe(() => {
             this.tiingo.getLatestPrice(this.ticker).subscribe(data => {
@@ -42,11 +45,20 @@ export class FavoriteStockComponent implements OnInit {
               console.log("Updating price for", this.ticker, this.latestPrice.last)
             })
           })
-        }
+        }*/
       })
       
     }
 
+  }
+
+  ngOnChanges() : void {
+
+    if(this.reload == true) {
+      console.log("Reload onChanges Working")
+      this.ngOnInit()
+      this.reload = false
+    }
   }
 
   getPriceChange() {

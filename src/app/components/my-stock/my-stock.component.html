@@ -90,6 +90,6 @@
     </div>
     <div class="card-footer">
         <app-sell-modal class="float-right " [latestPrice]='this.latestPrice' [ticker]='this.companyDescription.ticker.toLowerCase()' (sold)='emitUpdateMyStocks() '> </app-sell-modal>
-        <app-buy-modal class="float-right mr-3" [companyDescription]='this.companyDescription' [latestPrice]='this.latestPrice' [comingFrom]='"portfolio"' > </app-buy-modal>
+        <app-buy-modal class="float-right mr-3" [companyDescription]='this.companyDescription' [latestPrice]='this.latestPrice' [comingFrom]='"portfolio"' (boughtEvent)='emitUpdateMyStocks()' > </app-buy-modal>
     </div>
 </div>

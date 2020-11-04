@@ -6,13 +6,14 @@
             <ng-container *ngIf='myStocks.length > 0 else empty'>
                 <div class="row w-100">
                     <div class="d-flex justify-content-center w-100">
-                        <mat-spinner *ngIf='spinnerSpin'> </mat-spinner>
+                        <mat-spinner  [diameter]="70" *ngIf='spinnerSpin'> </mat-spinner>
                     </div>
                 </div>
                 <div class="container-fluid" [hidden]='this.noOfChildrenLoaded < myStocks.length'>
                         <app-my-stock *ngFor="let myStock of myStocks" [ticker]='myStock'
                         (finishedLoading)='countFinishedLoadingChildren()'
-                        (updateMyStocks)='updateMyStocks()'> </app-my-stock>    
+                        (updateMyStocks)='updateMyStocks()'
+                        [reload]='this.reload'> </app-my-stock>    
                 </div>
             </ng-container>
 

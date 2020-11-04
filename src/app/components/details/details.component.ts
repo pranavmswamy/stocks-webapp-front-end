@@ -1,8 +1,8 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, OnDestroy } from '@angular/core';
 import { TiingoService } from '../../services/tiingo.service'
 import { Input } from '@angular/core'
 import { WatchlistService } from '../../services/watchlist.service'
-import { Subject } from 'rxjs'
+import { Observable, Subject, Subscription } from 'rxjs'
 import { debounceTime } from 'rxjs/operators'
 import { interval } from 'rxjs'
 import { ActivatedRoute } from '@angular/router'
@@ -13,13 +13,15 @@ import { ActivatedRoute } from '@angular/router'
   styleUrls: ['./details.component.css']
 })
 
-export class DetailsComponent implements OnInit {
+export class DetailsComponent implements OnInit, OnDestroy {
   @Input() ticker;
   companyDescription;
   news;
   latestPrice;
   currentTime;
   validStock = true;
+
+  private price_subscribe: Subscription;
 
   @Output() currentTab = new EventEmitter()
 
@@ -63,13 +65,13 @@ export class DetailsComponent implements OnInit {
 
         if(this.latestPrice.bidPrice != null) { 
           // call every 30s
-          interval(0.5*60*1000).subscribe(() => {
+          this.price_subscribe = interval(0.25*60*1000).subscribe(() => {
             this.tiingo.getLatestPrice(this.ticker).subscribe(data => {
               this.latestPrice = data;
               console.log(this.latestPrice.last)
             })
             this.currentTime = this.getCurrentTimestamp();
-            console.log("Called every 30s")
+            console.log("Called every 15s")
           })
         }
       })
@@ -104,6 +106,10 @@ export class DetailsComponent implements OnInit {
     else {
       this.validStock = false;
     }
+  }
+
+  ngOnDestroy(): void {
+    this.price_subscribe.unsubscribe()
   }
 
   changeSuccessMessage() {

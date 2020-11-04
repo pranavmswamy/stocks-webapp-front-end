@@ -14,6 +14,8 @@ export class PortfolioComponent implements OnInit {
   spinnerSpin = true;
   noOfChildrenLoaded = 0;
 
+  reload = false
+
   constructor(
     private portfolio: PortfolioService
   ) { }
@@ -21,6 +23,7 @@ export class PortfolioComponent implements OnInit {
   ngOnInit(): void {
     this.currentTab.emit('portfolio');
     this.spinnerSpin = true;
+    this.myStocks = []
     this.myStocks = Object.keys(this.portfolio.getPortfolio()).sort()
   }
 
@@ -34,7 +37,17 @@ export class PortfolioComponent implements OnInit {
   }
 
   updateMyStocks() {
+    this.myStocks = []
     this.myStocks = Object.keys(this.portfolio.getPortfolio()).sort();
+    
+    this.reload = true;
+    setTimeout(()=> {
+      this.reload = false;
+    }, 100)
+  }
+  
+  ngOnChanges() : void {
+
   }
 
 }

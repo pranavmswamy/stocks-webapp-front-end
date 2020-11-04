@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { TiingoService } from '../../services/tiingo.service'
 import { Input } from '@angular/core'
 import * as Highcharts from 'highcharts/highstock';
 import HC_stock from 'highcharts/modules/stock';
-import { interval } from 'rxjs';
+import { interval, Subscription } from 'rxjs';
 HC_stock(Highcharts);
 
 @Component({
@@ -11,11 +11,13 @@ HC_stock(Highcharts);
   templateUrl: './stock-summary.component.html',
   styleUrls: ['./stock-summary.component.css']
 })
-export class StockSummaryComponent implements OnInit {
+export class StockSummaryComponent implements OnInit, OnDestroy {
   @Input() ticker;
   @Input() latestPrice;
   @Input() companyDescription;
   charts_data;
+
+  private charts_subscribe: Subscription
 
   //chart properties
   isHighcharts = typeof Highcharts === 'object';
@@ -27,6 +29,11 @@ export class StockSummaryComponent implements OnInit {
   constructor(
     private tiingo: TiingoService
   ) { }
+
+
+  ngOnDestroy(): void {
+    this.charts_subscribe.unsubscribe()
+  }
 
   ngOnInit(): void {
 
@@ -84,7 +91,7 @@ export class StockSummaryComponent implements OnInit {
 
 
         if(this.latestPrice.bidPrice != null) {
-          interval(0.25*60*1000).subscribe(() => {
+          this.charts_subscribe = interval(0.25*60*1000).subscribe(() => {
 
 
 

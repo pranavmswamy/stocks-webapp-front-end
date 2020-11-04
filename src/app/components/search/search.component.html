@@ -27,7 +27,7 @@
 
     <mat-autocomplete #auto="matAutocomplete">
         <ng-template #empty>
-            <mat-spinner> </mat-spinner>
+            <mat-spinner [diameter]="70"> </mat-spinner>
         </ng-template>
         <div *ngIf='this.autoCompleteOptions.length > 0 else empty'>
             <mat-option *ngFor="let option of autoCompleteOptions" [value]="option.ticker">

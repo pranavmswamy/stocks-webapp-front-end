@@ -20,7 +20,6 @@ export class AppComponent {
 
   changeCurrentActive(tab) {
     this.currentActive = tab;
-    console.log("-----", this.currentActive, this.currentActive.constructor.name)
   }
 
 }

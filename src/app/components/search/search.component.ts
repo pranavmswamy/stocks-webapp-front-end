@@ -36,7 +36,8 @@ export class SearchComponent implements OnInit {
 
 
   onTyped(text) {
-    setTimeout(() => {},1000);
+    this.autoCompleteOptions = [];
+    setTimeout(() => {}, 1000);
     if(text != "") {
       this.tiingo.getAutoCompleteOptions(text).subscribe(data => {
         this.autoCompleteOptions = data;

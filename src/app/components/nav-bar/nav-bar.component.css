@@ -7,14 +7,15 @@ nav {
 li {
     border-radius: 0px;
     margin: 0px;
-    padding: 0px;
+    padding-right: 3px;
+    padding-left: 3px;
 }
 
 .active {
     border-color: white;
     border-style: solid;
-    border-width: 2px;
-    border-radius: 35%;
+    border-width: 1px;
+    border-radius: 7px;
 }
 
 .inactive {

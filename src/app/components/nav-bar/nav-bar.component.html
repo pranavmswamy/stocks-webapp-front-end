@@ -7,13 +7,13 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav ml-auto">
         <li [ngClass]="{'nav-item': true, 'active': this.currentActive.constructor.name == 'SearchComponent','mx-2': true }">
-          <a class="nav-link" routerLink="/" (click)="search = true; port = false; watch = false" data-toggle="collapse" data-target="#navbarSupportedContent">Search </a>
+          <a class="nav-link float-right w-100 mx-1" routerLink="/" (click)="search = true; port = false; watch = false" data-toggle="collapse" data-target="#navbarSupportedContent"> <span class="float-right"> Search </span> </a>
         </li>
         <li [ngClass]="{'nav-item': true, 'active': this.currentActive.constructor.name == 'WatchlistComponent', 'mx-2': true}" >
-          <a class="nav-link" routerLink="/watchlist" (click)="watch = true; port = false; search = false" data-toggle="collapse" data-target="#navbarSupportedContent"> Watchlist </a>
+          <a class="nav-link float-right w-100 mx-1" routerLink="/watchlist" (click)="watch = true; port = false; search = false" data-toggle="collapse" data-target="#navbarSupportedContent"> <span class="float-right"> Watchlist </span> </a>
         </li>
         <li [ngClass]="{'nav-item': true, 'active': this.currentActive.constructor.name == 'PortfolioComponent', 'mx-2': true}" >
-          <a class="nav-link" routerLink="/portfolio" (click)="port = true; search = false; watch = false" data-toggle="collapse" data-target="#navbarSupportedContent">Portfolio</a>
+          <a class="nav-link float-right w-100 mx-1" routerLink="/portfolio" (click)="port = true; search = false; watch = false" data-toggle="collapse" data-target="#navbarSupportedContent"> <span class="float-right"> Portfolio </span> </a>
         </li>
       </ul>
     </div>

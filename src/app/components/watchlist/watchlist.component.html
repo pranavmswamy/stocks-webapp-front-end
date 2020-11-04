@@ -1,14 +1,14 @@
 <div class="container-fluid">
     <div class="row d-flex justify-content-center">
         <div class="col-md-8 col-xs-12 ml-3 mr-3">
-            <ngb-alert *ngIf='removedFromWatchlist' type="danger" (close)="removedFromWatchlist = ''"> {{ removedFromWatchlist }} </ngb-alert>
+            <ngb-alert class="mt-3" *ngIf='removedFromWatchlist' type="danger" (close)="removedFromWatchlist = ''"> {{ removedFromWatchlist }} </ngb-alert>
    
             <p class="h1 mt-5 mb-5"> My Watchlist </p>
 
             <ng-container *ngIf="favoriteStocks.length > 0 else empty">
                 <div class="row w-100">
                     <div class="d-flex justify-content-center w-100">
-                        <mat-spinner *ngIf='spinnerSpin'> </mat-spinner>
+                        <mat-spinner [diameter]="70" *ngIf='spinnerSpin'> </mat-spinner>
                     </div>
                 </div>
                 <div class="container-fluid" [hidden]='this.noOfChildrenFinishedLoading < favoriteStocks.length'>
@@ -19,7 +19,8 @@
                             </button>
                         </div>
                         <app-favorite-stock  [ticker]='favorite'
-                                            (finishedLoading)='countFinishedLoadingEvents()'> </app-favorite-stock>
+                                            (finishedLoading)='countFinishedLoadingEvents()'
+                                            [reload]="this.reload"> </app-favorite-stock>
                     </div>
                 </div>    
             </ng-container>

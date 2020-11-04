@@ -11,7 +11,8 @@ import {WatchlistService} from '../../services/watchlist.service'
 })
 export class WatchlistComponent implements OnInit {
   favoriteStocks = [];
-  
+  reload = false;
+
   private _removedW = new Subject<string>();
   removedFromWatchlist;
   spinnerSpin = true;
@@ -21,7 +22,7 @@ export class WatchlistComponent implements OnInit {
   noOfChildrenFinishedLoading = 0;
 
   constructor(
-    private watchlist: WatchlistService
+    private watchlist: WatchlistService,
   ) { }
 
   ngOnInit(): void {
@@ -42,7 +43,14 @@ export class WatchlistComponent implements OnInit {
     // update watchlist service
     this.watchlist.removeFromWatchList(ticker.toLowerCase());
     // update class var favStocks
+    this.favoriteStocks = [];
     this.favoriteStocks = Object.keys(this.watchlist.getWatchList()).sort();
+
+    this.reload = true;
+    setTimeout(()=> {
+      this.reload = false;
+    }, 100)
+
   }
 
   countFinishedLoadingEvents() {
