@@ -42,7 +42,7 @@ export class StockChartsComponent implements OnInit {
       
         this.historicalData = data;
   
-        console.log(this.historicalData)
+        //console.log(this.historicalData)
   
         let ohlc = []
         let volume = []
@@ -73,11 +73,11 @@ export class StockChartsComponent implements OnInit {
           ])
         }
   
-        console.log("ohlc data- ")
-        console.log(ohlc)
+        // console.log("ohlc data- ")
+        // console.log(ohlc)
   
-        console.log("vol data-")
-        console.log(volume)
+        // console.log("vol data-")
+        // console.log(volume)
         
         this.chartOptions = {
 

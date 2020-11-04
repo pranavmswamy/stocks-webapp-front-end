@@ -1,7 +1,7 @@
 <div class="container">
     <div class="text-center">
         <div class="col-xs-12">
-            <div class="display-3 m-5" style="font-weight: 900"> STOCK SEARCH </div>
+            <div class="display-3 m-5 pt-3" style="font-weight: 900"> STOCK SEARCH </div>
                 <form class="d-flex justify-content-center">
                     <div class="search-border">
                         <input type="text"
@@ -9,8 +9,8 @@
                         matInput
                         #searchField
                         [matAutocomplete]="auto"
-                        (input)="onTyped(searchField.value)"
-                        (keyup)='checkIfEmpty(searchField.value)' />
+                        (keyup)="onTyped(searchField.value)"
+                        />
                         <button class="btn" (click)="goToDetailsView('DETAILS')"
                                             (click)="onSearchClick(searchField.value)"
                                             [routerLink]="['/details', searchField.value]"> 
@@ -31,7 +31,7 @@
         </ng-template>
         <div *ngIf='this.autoCompleteOptions.length > 0 else empty'>
             <mat-option *ngFor="let option of autoCompleteOptions" [value]="option.ticker">
-                <span style=""> {{ option.ticker }} </span> | {{ option.name }}
+                <span> {{ option.ticker }} </span> | {{ option.name }}
             </mat-option>
         </div>
     </mat-autocomplete>

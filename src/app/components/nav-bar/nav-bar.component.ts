@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Output, EventEmitter } from '@angular/core'
+import { SearchComponent } from '../search/search.component'
 
 @Component({
   selector: 'app-nav-bar',
@@ -10,6 +11,8 @@ export class NavBarComponent implements OnInit {
 
   @Output() tabClicked = new EventEmitter()
   activeTab = "SEARCH" // not reqd actually, can directly send through parameter passed to tabChange()
+
+  @Input() currentActive;
 
   port = false;
   watch = false;

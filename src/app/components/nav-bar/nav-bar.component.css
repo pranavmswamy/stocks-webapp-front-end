@@ -1,17 +1,25 @@
 nav {
     background-color: blueviolet;
     color: white;
+    min-height: 60px;
 }
 
 li {
-    border-radius: 13px;
-    margin: 5px;
-    padding: 2px;
+    border-radius: 0px;
+    margin: 0px;
+    padding: 0px;
 }
 
 .active {
     border-color: white;
     border-style: solid;
-    border-width: 1px;
-    border-radius: 15%;
+    border-width: 2px;
+    border-radius: 35%;
+}
+
+.inactive {
+    border-color: red;
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 30%;
 }

@@ -27,7 +27,7 @@ export class MyStockComponent implements OnInit {
 
         this.finishedLoading.emit()
 
-        if(this.latestPrice.mid != null) {
+        if(this.latestPrice.bidPrice != null) {
           // call every 30s
           interval(0.5*60*1000).subscribe(() => {
             this.tiingo.getLatestPrice(this.ticker).subscribe(data => {

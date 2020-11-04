@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Subject } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 import {WatchlistService} from '../../services/watchlist.service'
@@ -16,6 +16,8 @@ export class WatchlistComponent implements OnInit {
   removedFromWatchlist;
   spinnerSpin = true;
 
+  @Output() currentTab = new EventEmitter();
+
   noOfChildrenFinishedLoading = 0;
 
   constructor(
@@ -23,6 +25,7 @@ export class WatchlistComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.currentTab.emit('watchlist');
     this.spinnerSpin = true;
     this.noOfChildrenFinishedLoading = 0;
     this.favoriteStocks = Object.keys(this.watchlist.getWatchList()).sort();

@@ -13,6 +13,7 @@ export class SearchComponent implements OnInit {
   faSearch = faSearch;
   @Output() searchClicked = new EventEmitter()
   @Output() goToDetailsEvent = new EventEmitter()
+  @Output() currentTab = new EventEmitter()
   searchForm = new FormControl()
   autoCompleteOptions = [];
 
@@ -21,6 +22,7 @@ export class SearchComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.currentTab.emit('search');
   }
 
   goToDetailsView(details: String): void {
@@ -34,6 +36,7 @@ export class SearchComponent implements OnInit {
 
 
   onTyped(text) {
+    setTimeout(() => {},1000);
     if(text != "") {
       this.tiingo.getAutoCompleteOptions(text).subscribe(data => {
         this.autoCompleteOptions = data;

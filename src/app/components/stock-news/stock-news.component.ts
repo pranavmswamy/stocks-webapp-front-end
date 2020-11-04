@@ -33,7 +33,7 @@ export class StockNewsComponent implements OnInit {
           i += 2
         }
         this.news = news_2d;
-        console.log(this.news)
+        //console.log(this.news)
       })
     }
   }

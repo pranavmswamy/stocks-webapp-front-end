@@ -9,6 +9,7 @@ export class AppComponent {
   title = 'stocks-website';
   shown = "SEARCH"
   ticker: String;
+  currentActive = 'search';
 
   changeTab(tabValue, ticker?): void {
     this.ticker = ticker
@@ -17,5 +18,9 @@ export class AppComponent {
   }
 
 
+  changeCurrentActive(tab) {
+    this.currentActive = tab;
+    console.log("-----", this.currentActive, this.currentActive.constructor.name)
+  }
 
 }

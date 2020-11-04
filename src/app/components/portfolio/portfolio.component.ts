@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { PortfolioService } from 'src/app/services/portfolio.service';
 
 @Component({
@@ -9,6 +9,8 @@ import { PortfolioService } from 'src/app/services/portfolio.service';
 export class PortfolioComponent implements OnInit {
   myStocks;
 
+  @Output() currentTab = new EventEmitter();
+
   spinnerSpin = true;
   noOfChildrenLoaded = 0;
 
@@ -17,6 +19,7 @@ export class PortfolioComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.currentTab.emit('portfolio');
     this.spinnerSpin = true;
     this.myStocks = Object.keys(this.portfolio.getPortfolio()).sort()
   }

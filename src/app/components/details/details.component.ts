@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { TiingoService } from '../../services/tiingo.service'
 import { Input } from '@angular/core'
 import { WatchlistService } from '../../services/watchlist.service'
@@ -21,6 +21,8 @@ export class DetailsComponent implements OnInit {
   currentTime;
   validStock = true;
 
+  @Output() currentTab = new EventEmitter()
+
   private _success = new Subject<string>();
   private _addedW = new Subject<string>();
   private _removedW = new Subject<string>();
@@ -36,6 +38,7 @@ export class DetailsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.currentTab.emit('details')
 
     this.route.paramMap.subscribe(params => {
       this.ticker = params.get('ticker');
@@ -57,18 +60,18 @@ export class DetailsComponent implements OnInit {
       this.tiingo.getLatestPrice(this.ticker).subscribe(data => {
         this.latestPrice = data;
         console.log(this.latestPrice.last)
-      })
 
-
-      // call every 30s
-      interval(0.5*60*1000).subscribe(() => {
-        this.tiingo.getLatestPrice(this.ticker).subscribe(data => {
-          this.latestPrice = data;
-          console.log(this.latestPrice.last)
-        })
-        
-        this.currentTime = this.getCurrentTimestamp();
-        console.log("Called every 30s")
+        if(this.latestPrice.bidPrice != null) { 
+          // call every 30s
+          interval(0.5*60*1000).subscribe(() => {
+            this.tiingo.getLatestPrice(this.ticker).subscribe(data => {
+              this.latestPrice = data;
+              console.log(this.latestPrice.last)
+            })
+            this.currentTime = this.getCurrentTimestamp();
+            console.log("Called every 30s")
+          })
+        }
       })
 
       if(this.ticker.toLowerCase() in this.watchlist.getWatchList()) {
@@ -132,6 +135,11 @@ export class DetailsComponent implements OnInit {
 
   getPriceChangePercent() {
     return (((this.latestPrice.last - this.latestPrice.prevClose)*100)/this.latestPrice.prevClose).toFixed(2);
+  }
+
+  getLatestPriceLast() {
+    let p = parseFloat(this.latestPrice.last)
+    return p.toFixed(2)
   }
 
   toggleFavorite() {

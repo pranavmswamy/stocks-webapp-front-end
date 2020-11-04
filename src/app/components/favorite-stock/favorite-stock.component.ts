@@ -32,15 +32,17 @@ export class FavoriteStockComponent implements OnInit {
           this.finishedLoading.emit()
 
         })
-      
-      })
 
-      // call every 30s
-      interval(0.5*60*1000).subscribe(() => {
-        this.tiingo.getLatestPrice(this.ticker).subscribe(data => {
-          this.latestPrice = data;
-          console.log("Updating price for", this.ticker, this.latestPrice.last)
-        })
+
+        if(this.latestPrice.bidPrice != null) {
+          // call every 30s
+          interval(0.5*60*1000).subscribe(() => {
+            this.tiingo.getLatestPrice(this.ticker).subscribe(data => {
+              this.latestPrice = data;
+              console.log("Updating price for", this.ticker, this.latestPrice.last)
+            })
+          })
+        }
       })
       
     }
