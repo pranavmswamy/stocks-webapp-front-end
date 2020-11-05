@@ -17,6 +17,8 @@ export class SearchComponent implements OnInit {
   searchForm = new FormControl()
   autoCompleteOptions = [];
 
+  autoCompleteLoading = false;
+
   constructor(
     private tiingo: TiingoService
   ) { }
@@ -35,15 +37,20 @@ export class SearchComponent implements OnInit {
   }
 
 
-  onTyped(text) {
-    this.autoCompleteOptions = [];
-    setTimeout(() => {}, 1000);
+  onTyped(text1) {
+    //this.autoCompleteOptions = [];
+    
+    setTimeout(()=> {}, 2000)
+    let text = text1
     if(text != "") {
+      this.autoCompleteLoading = true;
       this.tiingo.getAutoCompleteOptions(text).subscribe(data => {
         this.autoCompleteOptions = data;
+        this.autoCompleteLoading = false;
       })
     }
     else {
+      this.autoCompleteLoading = false;
       this.autoCompleteOptions = [];
     } 
   }

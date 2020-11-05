@@ -32,7 +32,9 @@ export class StockSummaryComponent implements OnInit, OnDestroy {
 
 
   ngOnDestroy(): void {
-    this.charts_subscribe.unsubscribe()
+    if(this.charts_subscribe != undefined) {
+      this.charts_subscribe.unsubscribe()
+    }
   }
 
   ngOnInit(): void {

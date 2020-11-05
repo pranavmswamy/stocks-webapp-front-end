@@ -9,7 +9,7 @@
                         matInput
                         #searchField
                         [matAutocomplete]="auto"
-                        (keyup)="onTyped(searchField.value)"
+                        (input)="onTyped(searchField.value)"
                         />
                         <button class="btn" (click)="goToDetailsView('DETAILS')"
                                             (click)="onSearchClick(searchField.value)"
@@ -26,14 +26,14 @@
     </div>
 
     <mat-autocomplete #auto="matAutocomplete">
-        <ng-template #empty>
-            <mat-spinner [diameter]="70"> </mat-spinner>
-        </ng-template>
-        <div *ngIf='this.autoCompleteOptions.length > 0 else empty'>
+        <div *ngIf='!this.autoCompleteLoading'>
             <mat-option *ngFor="let option of autoCompleteOptions" [value]="option.ticker">
-                <span> {{ option.ticker }} </span> | {{ option.name }}
+                <span> {{ option.ticker }} </span> | <span style="font-size: small;"> {{ option.name }} </span>
             </mat-option>
         </div>
+        <mat-option *ngIf='this.autoCompleteLoading'>
+            <mat-spinner [diameter]="30"> </mat-spinner>
+        </mat-option>
     </mat-autocomplete>
 
 </div>

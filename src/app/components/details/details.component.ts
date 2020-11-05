@@ -109,7 +109,9 @@ export class DetailsComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.price_subscribe.unsubscribe()
+    if(this.price_subscribe != undefined) {
+      this.price_subscribe.unsubscribe()
+    }
   }
 
   changeSuccessMessage() {
