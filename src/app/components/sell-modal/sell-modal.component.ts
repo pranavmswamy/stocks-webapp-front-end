@@ -47,6 +47,10 @@ export class SellModalComponent implements OnInit {
     console.log("limit-", this.qtyLimit)
   }
 
+  getLastPrice() {
+    return parseFloat(this.latestPrice.last).toFixed(2)
+  }
+
   sell(qty) {
 
     this.portfolio.sellStock(this.ticker.toLowerCase(), parseInt(qty), this.latestPrice.last);

@@ -68,7 +68,7 @@
                             "black": this.latestPrice.last - getAvgCost() == 0 && (this.latestPrice.last - getAvgCost()).toFixed(2) == "0.00",
                             "text-right": true
                           }'>
-                            {{ this.latestPrice.last }}
+                            {{ getLastPrice() }}
                         </td>
                     </tr>
                     <tr>

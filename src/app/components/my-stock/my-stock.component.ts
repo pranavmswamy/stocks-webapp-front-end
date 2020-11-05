@@ -56,6 +56,11 @@ export class MyStockComponent implements OnInit {
     }
   }
 
+  getLastPrice() {
+    return parseFloat(this.latestPrice.last).toFixed(2)
+  }
+
+
   getPriceChange() {
     return (this.latestPrice.last - this.latestPrice.prevClose).toFixed(2);
   }

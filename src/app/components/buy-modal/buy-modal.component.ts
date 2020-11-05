@@ -27,6 +27,10 @@ export class BuyModalComponent implements OnInit {
     });
   }
 
+  getLastPrice() {
+    return parseFloat(this.latestPrice.last).toFixed(2)
+  }
+
 
   calcTotalAndEnableBuy(value) {
     this.numberOfSharesModalValue = value;
