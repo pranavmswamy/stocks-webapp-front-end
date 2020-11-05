@@ -18,7 +18,7 @@ export class NewsapiService {
 
   getNews(text) {
     let urlLocal = "http://localhost:3000/"
-    const newsUrl = `${urlLocal}news?q=${text}`
+    const newsUrl = `${this.hostUrlAWS}news?q=${text}`
     return this.http.get<NewsElement[]>(newsUrl)
   }
 }
