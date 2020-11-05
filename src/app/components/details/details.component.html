@@ -7,7 +7,7 @@
                 <ngb-alert class="text-center" *ngIf='removedFromWatchlist' type="danger" (close)="removedFromWatchlist = ''"> {{ removedFromWatchlist }} </ngb-alert>
                 <div>
                     <div class="row">
-                        <div class="col">
+                        <div class="col-6">
                             <div class="row m-0">
                                 <span class="h1 pr-2 m-0"> {{ this.companyDescription.ticker }} </span>
                                 <span class="h3" (click)="this.toggleFavorite()">    
@@ -25,7 +25,7 @@
                             "green": this.latestPrice.last - this.latestPrice.prevClose > 0,
                             "black": this.latestPrice.last - this.latestPrice.prevClose == 0,
                             "text-right": true,
-                            "col": true,
+                            "col-6": true,
                             "my-1" : false
                           }'>
                             <span class="h1 m-0"> {{ getLatestPriceLast() }} </span> <br>
