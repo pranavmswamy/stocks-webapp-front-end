@@ -10,7 +10,7 @@
         "col": true,
         "text-right": true
       }'>
-        <p class="h2 mt-2 mb-2 mr-4"> {{ this.latestPrice.last }} </p>
+        <p class="h2 mt-2 mb-2 mr-4"> {{ getLatestPrice() }} </p>
         <p class="h5 mt-2 mb-2 mr-4">
         <span *ngIf='this.latestPrice.last - this.latestPrice.prevClose > 0'> 
             <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-caret-up-fill" fill="green" xmlns="http://www.w3.org/2000/svg">

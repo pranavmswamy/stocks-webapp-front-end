@@ -61,6 +61,10 @@ export class FavoriteStockComponent implements OnInit, OnChanges {
     }
   }
 
+  getLatestPrice() {
+    return (parseFloat(this.latestPrice.last)).toFixed(2)
+  }
+
   getPriceChange() {
     return (this.latestPrice.last - this.latestPrice.prevClose).toFixed(2);
   }
