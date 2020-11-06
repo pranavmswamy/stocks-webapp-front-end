@@ -12,7 +12,7 @@ export class BuyModalComponent implements OnInit {
   @Input() latestPrice;
   @Input() comingFrom;
   @Output() boughtEvent = new EventEmitter();
-  numberOfSharesModalValue = '';
+  numberOfSharesModalValue = 0;
   constructor(
     private buyModal: NgbModal,
     private portfolio: PortfolioService
@@ -33,7 +33,7 @@ export class BuyModalComponent implements OnInit {
 
 
   calcTotalAndEnableBuy(value) {
-    this.numberOfSharesModalValue = value;
+    this.numberOfSharesModalValue = parseInt(value);
     console.log(value)
   }
 

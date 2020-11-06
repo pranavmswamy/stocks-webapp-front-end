@@ -23,7 +23,7 @@
                 <form>
                     <div class="form-group">
                     <div class="input-group">
-                        <input type="number" id="quantity" class="form-control" placeholder="0" name="qty" #qty (input)="calcTotalAndEnableBuy(qty.value)">
+                        <input type="number"  min="1" id="quantity" class="form-control" placeholder="0" name="qty" #qty (input)="calcTotalAndEnableBuy(qty.value)">
                     </div>
                     </div>
                 </form>  
@@ -34,13 +34,13 @@
         <div class="container-fluid">
             <div class="row w-100">
                 <div class="col-9">
-                    <span class="float-left" *ngIf="this.numberOfSharesModalValue != '' ">
+                    <span class="float-left" *ngIf="this.numberOfSharesModalValue > 0 ">
                         Total: {{ (numberOfSharesModalValue*this.latestPrice.last).toFixed(2) }}
                     </span>
                 </div>
                 <div class="col-3 mr-0">
-                    <button *ngIf="this.numberOfSharesModalValue == ''" type="button" class="btn btn-success float-right" (click)="addToPortfolio(qty.value)" disabled>Buy</button>
-                    <button  *ngIf="this.numberOfSharesModalValue != ''" type="button" class="btn btn-success float-right" (click)="addToPortfolio(qty.value)" (click)='modal.close()'>Buy</button>
+                    <button *ngIf="this.numberOfSharesModalValue <= 0" type="button" class="btn btn-success float-right" (click)="addToPortfolio(qty.value)" disabled>Buy</button>
+                    <button  *ngIf="this.numberOfSharesModalValue > 0" type="button" class="btn btn-success float-right" (click)="addToPortfolio(qty.value)" (click)='modal.close()'>Buy</button>
                 </div>
             </div>
         </div>

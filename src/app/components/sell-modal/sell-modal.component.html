@@ -33,13 +33,13 @@
     <div class="modal-footer">
         <div class="row w-100">
             <div class="col-9">
-                <span *ngIf="this.numberOfSharesModalValue != 0 && this.numberOfSharesModalValue <= this.qtyLimit">
+                <span *ngIf="this.numberOfSharesModalValue > 0 && this.numberOfSharesModalValue <= this.qtyLimit">
                     Total: {{ (numberOfSharesModalValue*this.latestPrice.last).toFixed(2) }}
                 </span>
             </div>
             <div class="col-3">
-                    <button *ngIf="this.numberOfSharesModalValue == 0 || this.numberOfSharesModalValue > this.qtyLimit" type="button" class="btn btn-success" (click)="sell(qty.value)" disabled>Sell</button>
-                    <button *ngIf="this.numberOfSharesModalValue != 0 && this.numberOfSharesModalValue <= this.qtyLimit" type="button" class="btn btn-success" (click)="sell(qty.value)">Sell</button>
+                    <button *ngIf="this.numberOfSharesModalValue <= 0 || this.numberOfSharesModalValue > this.qtyLimit" type="button" class="btn btn-success" (click)="sell(qty.value)" disabled>Sell</button>
+                    <button *ngIf="this.numberOfSharesModalValue > 0 && this.numberOfSharesModalValue <= this.qtyLimit" type="button" class="btn btn-success" (click)="sell(qty.value)">Sell</button>
             </div>
         </div>
     </div>
