@@ -60,6 +60,21 @@ export class SellModalComponent implements OnInit {
   }
 
   openSellModal(content) {
+
+    console.log(this.ticker)
+    if(this.ticker != undefined) {
+      if(this.ticker.toLowerCase() in this.portfolio.getPortfolio()) {
+        console.log("entered")
+        this.qtyLimit = parseInt(this.portfolio.getPortfolio()[this.ticker]["quantity"]);
+        console.log(this.qtyLimit)
+      }
+      else {
+        console.log("did not enter")
+        this.qtyLimit = 0;
+      }
+      console.log(this.portfolio.getPortfolio())
+    }
+
     this.sellModal.open(content);
   }
 }
