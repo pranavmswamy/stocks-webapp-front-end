@@ -19,7 +19,7 @@ export class NewsapiService {
 
   getNews(text) {
     let urlLocal = "http://localhost:3000/"
-    const newsUrl = `${this.hostUrlGCPServerless}getNews?q=${text}`
+    const newsUrl = `${this.hostUrlGCPServerless}getNnews?q=${text}`
     return this.http.get<NewsElement[]>(newsUrl)
   }
 }
