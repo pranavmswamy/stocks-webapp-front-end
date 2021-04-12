@@ -12,15 +12,15 @@ This application is designed to help you learn and understand how to trade on th
 
 ## Screenshots
 
-![Image](https://github.com/pranavmswamy/stocks-webapp-front-end/blob/main/screenshots/pic1.png)
+![Image](https://github.com/pranavmswamy/stocks-webapp-front-end/blob/gcp-serverless/screenshots/pic1.png)
 
-![Image](https://github.com/pranavmswamy/stocks-webapp-front-end/blob/main/screenshots/pic2.png)
+![Image](https://github.com/pranavmswamy/stocks-webapp-front-end/blob/gcp-serverless/screenshots/pic2.png)
 
-![Image](https://github.com/pranavmswamy/stocks-webapp-front-end/blob/main/screenshots/pic3.png)
+![Image](https://github.com/pranavmswamy/stocks-webapp-front-end/blob/gcp-serverless/screenshots/pic3.png)
 
-![Image](https://github.com/pranavmswamy/stocks-webapp-front-end/blob/main/screenshots/pic4.png)
+![Image](https://github.com/pranavmswamy/stocks-webapp-front-end/blob/gcp-serverless/screenshots/pic4.png)
 
-![Image](https://github.com/pranavmswamy/stocks-webapp-front-end/blob/main/screenshots/pic5.png)
+![Image](https://github.com/pranavmswamy/stocks-webapp-front-end/blob/gcp-serverless/screenshots/pic5.png)
 
 
 ## StocksWebsite
