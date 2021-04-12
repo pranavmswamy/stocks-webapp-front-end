@@ -1,4 +1,29 @@
-# StocksWebsite
+# Stocks Web App
+
+URL - https://pranavmswamy.github.io/stocks-webapp/
+
+A web app that simulates buying and selling of stocks on the Stock Market.
+
+This application is designed to help you learn and understand how to trade on the stock market.
+- Real-time stock market information for any purchasable stock (updates every 45s).
+- Read news about your favorite companies.
+- Keep track of the prices of your favorite stocks by adding them to a watchlist.
+- Store purchased stocks in the portfolio
+
+## Screenshots
+
+![Image](https://github.com/pranavmswamy/stocks-webapp-front-end/blob/gcp-serverless/screenshots/pic1.png)
+
+![Image](https://github.com/pranavmswamy/stocks-webapp-front-end/blob/gcp-serverless/screenshots/pic2.png)
+
+![Image](https://github.com/pranavmswamy/stocks-webapp-front-end/blob/gcp-serverless/screenshots/pic3.png)
+
+![Image](https://github.com/pranavmswamy/stocks-webapp-front-end/blob/gcp-serverless/screenshots/pic4.png)
+
+![Image](https://github.com/pranavmswamy/stocks-webapp-front-end/blob/gcp-serverless/screenshots/pic5.png)
+
+
+## StocksWebsite
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.1.4.
 
